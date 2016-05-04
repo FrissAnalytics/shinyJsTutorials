@@ -118,7 +118,7 @@ We end the tutorials with the creation of a custom [input binding](http://shiny.
 
 ### Tutorial materials
 
-All the content related to the examples below can be found on [this](https://github.com/FrissAnalytics/shiny-js-tutorials) GITHUB repo. GITHUB is a code hosting platform for version control and collaboration. You can find more information on GITHUB [here](https://guides.github.com/activities/hello-world/). You can also download the tutorial materials as a single [ZIP](https://github.com/FrissAnalytics/shiny-js-tutorials/archive/master.zip) file. Over the course of the next months various additional tutorials will be made available in this repo.  
+All the content related to the examples below can be found on [this](https://github.com/FrissAnalytics/shinyJsTutorials) GITHUB repo. GITHUB is a code hosting platform for version control and collaboration. You can find more information on GITHUB [here](https://guides.github.com/activities/hello-world/). You can also download the tutorial materials as a single [ZIP](https://github.com/FrissAnalytics/shinyJsTutorials/archive/master.zip) file. Over the course of the next months various additional tutorials will be made available in this repo.  
 
 
 ## Stand alone examples
@@ -182,7 +182,7 @@ var chart1 = c3.generate({
 </html>
 ```
 
-This code corresponds to [example_01_gauge.html](https://raw.githubusercontent.com/FrissAnalytics/shiny-js-tutorials/master/examples/example_01_gauge.html) in the examples folder of [this](https://github.com/FrissAnalytics/shiny-js-tutorials/tree/master/examples) repository.
+This code corresponds to [example_01_gauge.html](https://raw.githubusercontent.com/FrissAnalytics/shinyJsTutorials/master/examples/example_01_gauge.html) in the examples folder of [this](https://github.com/FrissAnalytics/shinyJsTutorials/tree/master/examples) repository.
 
  
 Let's break down this code into the steps stated in the previous section.
@@ -375,7 +375,7 @@ Here's the code for the complete example:
 </html>
 ```
 
-This code corresponds to "example_02_gauge.html" in the examples folder of [this](https://github.com/FrissAnalytics/shiny-js-tutorials/tree/master/examples) repository. As we can see, the call to `c3.generate` is a bit more involved. With respect to the specific options used, we refer to the c3.js [examples](http://c3js.org/examples.html) and [reference](http://c3js.org/reference.html) for details.
+This code corresponds to "example_02_gauge.html" in the examples folder of [this](https://github.com/FrissAnalytics/shinyJsTutorials/tree/master/examples) repository. As we can see, the call to `c3.generate` is a bit more involved. With respect to the specific options used, we refer to the c3.js [examples](http://c3js.org/examples.html) and [reference](http://c3js.org/reference.html) for details.
 
 
 In the example above, we wrapped the code to update the value of the gauge into another function, called  <a href='http://www.w3schools.com/jsref/met_win_setinterval.asp' target='_blank'>setInterval</a>. SetInterval is a standard JavaScript function that repeatedly executes a given function every ms milliseconds:
@@ -775,7 +775,7 @@ run the following command in R which installs a more complete version of our C3 
 the next tutorial:
 
 ```R
-devtools::install_github("FrissAnalytics/shiny-Js-Tutorials/widgets/C3")
+devtools::install_github("FrissAnalytics/shinyJsTutorials/widgets/C3")
 ```
 
 ## Next tutorial
