@@ -1,0 +1,98 @@
+<html>
+<head>
+	<!-- required css style file for c3.js -->
+	<link href="c3.min.css" rel="stylesheet" type="text/css">
+<style>
+ button:hover{
+	cursor: pointer;
+ }
+</style>	
+	
+</head>
+<body>
+
+<!-- container element in which we will create the chart -->
+<div id="chart1"></div>
+<div style = "margin: 0; text-align: center">
+	<button onclick="updateData()">update data</button>
+</div>
+
+<div id="click1" style = "text-align: center; color: white; background-color: gray; width: 150px; margin: 10px auto; border-radius:8px;"></div>
+
+<!-- required javascript libraries-->
+<script src="d3.v3.min.js"></script>
+<script src="underscore-min.js"></script>
+<script src="c3.min.js"></script>
+
+<!-- javascript block to render and update the chart-->
+<script>
+
+
+var dataSet1 = [
+            ['data1', 30, 20, 50, 40, 60, 50],
+            ['data2', 200, 130, 90, 240, 130, 220],
+            ['data3', 300, 200, 160, 400, 250, 250],
+            ['data4', 200, 130, 90, 240, 130, 220],
+            ['data5', 130, 120, 150, 140, 160, 150],
+            ['data6', 90, 70, 20, 50, 60, 120],
+        ];
+
+
+var dataSet2 = [
+            ['data7', 50, 30, 60, 4, 20, 30],
+            ['data8', 20, 13, 9, 40, 10, 20],
+            ['data9', 30, 40, 16, 40, 50, 70],
+            ['data1', 200, 130, 90, 240, 130, 220],
+            ['data2', 130, 120, 150, 140, 160, 150],
+            ['data3', 90, 70, 20, 50, 60, 120],
+        ];		
+		
+		
+var chart = c3.generate({
+	bindto: '#chart1',
+    data: {
+        columns: dataSet1,
+        type: 'bar',
+        types: {
+            data3: 'spline',
+            data4: 'line',
+            data6: 'area',
+        },
+        groups: [
+            ['data1','data2']
+        ]
+    }
+});
+
+var n = 0, dataNew, dataOld;
+	
+	updateData = function(){
+		
+		n++;
+		
+		if( n % 2 == 0){
+			dataNew = dataSet1
+			dataOld = dataSet2
+		} else {
+			dataNew = dataSet2
+			dataOld = dataSet1
+		}
+				
+		var keysOld = dataOld.map(function(obj){return obj[0]});
+		var keysNew = dataNew.map(function(obj){return obj[0]});
+		
+		// keys in old data which are not in the new data
+		diff = _.difference(keysOld, keysNew);
+						
+		chart.unload({
+			ids: diff,
+			done: function(){
+				chart.load({
+					columns: dataNew,
+				})
+			}
+		})	
+	}
+</script>
+</body>
+</html>

@@ -1,0 +1,27 @@
+<html>
+<head>
+	<link href="c3.min.css" rel="stylesheet" type="text/css">
+</head>
+<body>
+
+<div id="chart1"></div>
+
+<script src="d3.v3.min.js" charset="utf-8"></script>
+<script src="c3.min.js"></script>
+<script>
+var gaugeData = {data: 75};	
+  
+  var chart1 = c3.generate({
+	  bindto: '#chart1',
+	  data: {
+	    json: gaugeData,
+	    type: 'gauge',
+	  },
+	  gauge: {
+	    min: 0,
+	    max: 100
+	  }
+	});
+</script>
+</body>
+</html>

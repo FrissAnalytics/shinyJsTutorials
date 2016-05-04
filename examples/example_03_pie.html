@@ -1,0 +1,91 @@
+<html>
+<head>
+	<!-- required css style file for c3.js -->
+	<link href="c3.min.css" rel="stylesheet" type="text/css">
+<style>
+ button:hover{
+	cursor: pointer;
+ }
+</style>	
+	
+</head>
+<body>
+
+<!-- container element in which we will create the chart -->
+<div id="chart1"></div>
+<div style = "margin: 0; text-align: center">
+	<button onclick="updateData()">update data</button>
+</div>
+
+<div id="click1" style = "text-align: center; color: white; background-color: gray; width: 150px; margin: 10px auto; border-radius:8px;"></div>
+
+<!-- required javascript libraries-->
+<script src="d3.v3.min.js"></script>
+<script src="underscore-min.js"></script>
+<script src="c3.min.js"></script>
+
+<!-- javascript block to render and update the chart-->
+<script>
+
+	var dataSet1 = [
+		['data1', 30],
+		['data2', 120],
+	];
+			
+	var dataSet2 = [
+		["data1", 36],
+		["data4", 55],
+		["data5", 9]
+	];
+					
+	 chart = c3.generate({
+		bindto: '#chart1',
+		data: {
+			// iris data from R
+			columns: dataSet1,
+			type : 'pie',
+			onmouseover: function (d, i) { 
+				  d3.select("#click1")
+					.text("hover value: " + d.value)
+					.style("padding","2px 5px");
+			},
+			onmouseout: function (d, i) { 
+				  d3.select("#click1")
+					.text("")
+					.style("padding",0);
+			}
+		}
+	});
+	
+	var n = 0, dataNew, dataOld;
+	
+	updateData = function(){
+		
+		n++;
+		
+		if( n % 2 == 0){
+			dataNew = dataSet1
+			dataOld = dataSet2
+		} else {
+			dataNew = dataSet2
+			dataOld = dataSet1
+		}
+				
+		var keysOld = dataOld.map(function(obj){return obj[0]});
+		var keysNew = dataNew.map(function(obj){return obj[0]});
+		
+		// keys in new data
+		diff = _.difference(keysOld, keysNew);
+				
+		chart.load({
+			columns: dataNew,
+			done: function(){
+				chart.unload({
+					ids: diff
+				})
+			}
+		})	
+	}
+</script>
+</body>
+</html>

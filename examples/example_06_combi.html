@@ -1,0 +1,166 @@
+<html>
+<head>
+	<!-- required css style file for c3.js -->
+	<link href="c3.min.css" rel="stylesheet" type="text/css">
+<style>
+ button:hover{
+	cursor: pointer;
+ }
+</style>	
+	
+</head>
+<body>
+
+<!-- container element in which we will create the chart -->
+<div id="chart1"></div>
+<div style = "margin: 0; text-align: center">
+	<button onclick="updateData()">update data</button>
+</div>
+
+<div id="click1"    style = "text-align: center; color: white; background-color: gray; width: 150px; margin: 10px auto; border-radius:8px;"></div>
+<div id="brushInfo" style = "text-align: center; margin: 10px auto;"></div>
+
+
+<!-- required javascript libraries-->
+<script src="d3.v3.min.js"></script>
+<script src="underscore-min.js"></script>
+<script src="c3.min.js"></script>
+
+<!-- javascript block to render and update the chart-->
+<script>
+
+	var dataSet1 = [
+		{"Time":"2016-01-05","GREEN":23.984,"RED":48.78,"AMBER":2.439,"Total":246},
+		{"Time":"2016-01-12","GREEN":51.645,"RED":45.724,"AMBER":2.632,"Total":304},
+		{"Time":"2016-01-19","GREEN":58.549,"RED":36.788,"AMBER":4.663,"Total":193},
+		{"Time":"2016-01-26","GREEN":55.615,"RED":38.503,"AMBER":5.882,"Total":187},
+		{"Time":"2016-02-02","GREEN":45.041,"RED":45.868,"AMBER":6.612,"Total":242},
+		{"Time":"2016-02-09","GREEN":41.479,"RED":52.412,"AMBER":6.109,"Total":311},
+		{"Time":"2016-02-16","GREEN":53.138,"RED":42.678,"AMBER":4.184,"Total":239},
+		{"Time":"2016-02-23","GREEN":48.305,"RED":44.915,"AMBER":6.356,"Total":236},
+		{"Time":"2016-03-02","GREEN":51.538,"RED":43.846,"AMBER":4.231,"Total":260},
+		{"Time":"2016-03-09","GREEN":48.458,"RED":41.85,"AMBER":9.692,"Total":227},
+		{"Time":"2016-03-16","GREEN":46.691,"RED":42.647,"AMBER":10.662,"Total":272},
+		{"Time":"2016-03-23","GREEN":48.905,"RED":44.526,"AMBER":6.204,"Total":274},
+		{"Time":"2016-03-30","GREEN":50.57,"RED":41.825,"AMBER":6.084,"Total":263},
+		{"Time":"2016-04-06","GREEN":55.068,"RED":37.838,"AMBER":7.095,"Total":296},
+		{"Time":"2016-04-13","GREEN":60.331,"RED":34.298,"AMBER":5.372,"Total":242},
+		{"Time":"2016-04-20","GREEN":45.918,"RED":45.918,"AMBER":7.653,"Total":196},
+		{"Time":"2016-04-27","GREEN":55.068,"RED":39.189,"AMBER":4.73,"Total":296},
+		{"Time":"2016-05-04","GREEN":50.192,"RED":42.912,"AMBER":6.513,"Total":261},
+		{"Time":"2016-05-11","GREEN":53.876,"RED":43.411,"AMBER":2.713,"Total":258},
+		{"Time":"2016-05-18","GREEN":54.585,"RED":39.738,"AMBER":5.677,"Total":229}
+	];
+	
+	var dataSet2 = [
+		{"Time":"2016-01-05","GREEN":48.905,"RED":44.526,"AMBER":6.204,"Total":274},
+		{"Time":"2016-01-12","GREEN":50.57,"RED":41.825,"AMBER":6.084,"Total":263},
+		{"Time":"2016-01-19","GREEN":55.068,"RED":37.838,"AMBER":7.095,"Total":296},
+		{"Time":"2016-01-26","GREEN":60.331,"RED":34.298,"AMBER":5.372,"Total":242},
+		{"Time":"2016-02-02","GREEN":45.918,"RED":45.918,"AMBER":7.653,"Total":196},
+		{"Time":"2016-02-09","GREEN":55.068,"RED":39.189,"AMBER":4.73,"Total":296},
+		{"Time":"2016-02-16","GREEN":50.192,"RED":42.912,"AMBER":6.513,"Total":261},
+		{"Time":"2016-02-23","GREEN":53.876,"RED":43.411,"AMBER":2.713,"Total":258},
+		{"Time":"2016-03-02","GREEN":54.585,"RED":39.738,"AMBER":5.677,"Total":229},
+		{"Time":"2016-03-09","GREEN":23.984,"RED":48.78,"AMBER":2.439,"Total":246},
+		{"Time":"2016-03-16","GREEN":51.645,"RED":45.724,"AMBER":2.632,"Total":304},
+		{"Time":"2016-03-23","GREEN":58.549,"RED":36.788,"AMBER":4.663,"Total":193},
+		{"Time":"2016-03-30","GREEN":55.615,"RED":38.503,"AMBER":5.882,"Total":187},
+		{"Time":"2016-04-06","GREEN":45.041,"RED":45.868,"AMBER":6.612,"Total":242},
+		{"Time":"2016-04-13","GREEN":41.479,"RED":52.412,"AMBER":6.109,"Total":311},
+		{"Time":"2016-04-20","GREEN":53.138,"RED":42.678,"AMBER":4.184,"Total":239},
+		{"Time":"2016-04-27","GREEN":48.305,"RED":44.915,"AMBER":6.356,"Total":236},
+		{"Time":"2016-05-04","GREEN":51.538,"RED":43.846,"AMBER":4.231,"Total":260},
+		{"Time":"2016-05-11","GREEN":48.458,"RED":41.85,"AMBER":9.692,"Total":227},
+		{"Time":"2016-05-19","GREEN":46.691,"RED":42.647,"AMBER":10.662,"Total":272},
+	];
+	
+	var keys1 = ["GREEN","AMBER","RED","Total"];
+	var keys2 = ["GREEN","RED","Total"];
+		
+	var chart = c3.generate({
+		bindto: "#chart1",
+		data: {
+			json: dataSet1,
+			keys: {
+			    x: "Time",
+				value: keys1,
+			},
+			colors: {
+				GREEN: "green",
+				AMBER: "orange",
+				RED: "red",
+				Total: "gray"
+			},
+			types: {
+				Total: 'bar'
+			},
+			axes: {
+				Total: 'y2'
+			}
+		},
+		axis: {
+			x: {
+				type: "timeseries",
+				tick: {
+					format: "%Y-%m-%d"
+				}
+			},
+			y2: {
+				show: true
+			}
+		},
+		subchart: {
+			show: true,
+			onbrush: function (domain){ 
+				d3.select("#brushInfo")
+				  .text(domain);
+			}				
+		}
+	});
+		
+	var n = 0, dataNew, dataOld, keysNew, keysOld;
+	
+	updateData = function(){
+		
+		n++;
+		
+		if( n % 2 == 0){
+			
+			dataNew = dataSet1
+			dataOld = dataSet2
+			
+			keysNew = keys1
+			keysOld = keys2
+			
+		} else {
+		
+			dataNew = dataSet2
+			dataOld = dataSet1
+			
+			keysNew = keys2
+			keysOld = keys1
+			
+		}
+				
+		// keys in new data that are not in the old data
+		diff = _.difference(keysOld, keysNew);
+				
+		chart.load({
+			json: dataNew,
+			keys: {
+			    x: "Time",
+				value: keysNew,
+			},
+			done: function(){
+				chart.unload({
+					ids: diff
+				})
+			}
+		})	
+	}
+
+	
+</script>
+</body>
+</html>

@@ -1,0 +1,11 @@
+Package: frissShinyJsTutorials
+Type: Package
+Title: javascript widget examples for shiny web apps
+Version: 0.1.0
+Authors@R: person("Herman", "Sontrop", email = "herman.sontrop@friss.eu", role = c("aut", "cre"))
+Description: a collection of javascript widget examples for shiny based web apps
+License: MIT
+LazyData: TRUE
+Suggests: knitr,
+    rmarkdown
+VignetteBuilder: knitr

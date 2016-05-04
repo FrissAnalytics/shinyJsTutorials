@@ -1,0 +1,75 @@
+#FrissLogo{
+  position:fixed; 
+  top: 10px; 
+  left:10px;
+  z-index: 100000000000;
+  height: 30px;
+}
+
+
+/*pad the body 60px down due to fixed header top nav bar */
+body{
+    padding-top: 60px;
+}
+
+.navbar {
+    min-height: 0px;
+    height: 50px;
+    margin-bottom: 0px;
+}
+
+.navbar-default {
+    background-color: #333;
+    border-color: #FFF;
+  	color: #FFF;
+  	opacity: 0.95;
+}
+
+.navbar-nav>li>a {
+    padding-bottom: 0px; 
+}  
+  
+	
+.navbar-default .navbar-nav > li > a:hover, .navbar-default .navbar-nav > li > a:focus {
+    color: green;
+}
+
+/* menu items */
+/* set the background of the menu items to pink and default color */
+
+.navbar .nav > li > a {
+    background-color: rgb(51, 51, 51);   
+    color: white;
+    text-shadow: none;
+}
+
+/* set hover and focus */
+    .navbar .nav > li > a:focus,
+    .navbar .nav > li > a:hover {
+    background-color: rgb(51, 51, 51);
+    color: orange;
+}
+/* set active item */
+.navbar .nav > .active > a,
+.navbar .nav > .active > a:hover,
+.navbar .nav > .active > a:focus {
+
+  background-color: rgb(51, 51, 51);
+  color: green;
+}
+
+/* set font color and background of the project name (brand) */
+.navbar .brand 
+{
+  background-color: rgb(51, 51, 51);
+  color: rgb(51, 51, 51);
+}
+
+.navbar .nav li.dropdown.open > .dropdown-toggle, .navbar .nav li.dropdown.active > .dropdown-toggle, .navbar .nav li.dropdown.open.active > .dropdown-toggle {
+  color: green;
+  background-color:rgb(51, 51, 51);
+}
+
+.navbar-nav a:focus {
+    outline: none;
+}
