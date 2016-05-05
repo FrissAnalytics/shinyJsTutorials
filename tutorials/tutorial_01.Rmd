@@ -470,7 +470,7 @@ The `scaffoldWidget` function is the function which creates the actual template.
 
 With the first argument, we specify the name we want our widget to have. 
 
-The second argument is optional and states the name of the JavaScript library on <a href="http://bower.io/" target="_blank">bower</a> that we want to use. Bower is a web component manager which you can use to install a component and all its dependencies. In our case, we want to include c3.js and its dependencies. When you run the above command, you can see that c3.js and its dependencies,s i.e. d3.js, are downloaded and put in the package folder we just created. You can find them in the folder C3Gauge/inst/htmlwidgets/lib. 
+The second argument is optional and states the name of the JavaScript library on <a href="http://bower.io/" target="_blank">bower</a> that we want to use. Bower is a web component manager which you can use to install a component and all its dependencies. In our case, we want to include c3.js and its dependencies. When you run the above command, you can see that c3.js and its dependencies, i.e. d3.js, are downloaded and put in the package folder we just created. You can find them in the folder C3Gauge/inst/htmlwidgets/lib. 
 
 Instead of using bower, you can also manually insert the appropriate files in the "lib" folder. 
 The "lib" folder is the default location for all the external libraries you will use in your widget. Of note, here we set edit to FALSE because for now we do not want to open an editor to edit our files.
@@ -486,7 +486,7 @@ C3Gauge("hello, world")
 
 The `scaffoldWidget` function created a number of files and directories for us.
 
-First, an "htmlwidgets" directory is created within the "inst" directory of our C3Gauge package.
+First, an "htmlwidgets" directory is created within the "inst" directory of our C3 package.
 
 The "inst" folder is a generic R package folder where all external package dependencies are stored. We use this whenever we want to include files in our package.
 
@@ -610,7 +610,7 @@ By default this function is created with three arguments: `message`, `width` and
 In the default code, the `message` argument is any data that is passed on to the renderValue function in the C3Gauge.js code. 
 
 
-The body of `C3Gauge` consists of two parts. First, a list called `x` is created which will contain all data passed on to the widget. This can be a single value, a data.frame or a complex list holding all sorts of things. Next, the `createWidget` function is called with a `name`, our data `x`, the widget `width`, `height` and `package`, and the name of the package our widget is in.
+The body of `C3Gauge` consists of two parts. First, a list called `x` is created which will contain all data passed on to the widget. This can be a single value, a data.frame or a complex list holding all sorts of things. Next, the `createWidget` function is called with a `name`, our data `x`, the widget `width`, `height` and `package`, the name of the package our widget is in.
 
 
 If we look back at how we initialized our data in the stand alone examples, we can see the gauge wants the data to be in the following JavaScript format:
