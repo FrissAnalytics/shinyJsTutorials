@@ -9,7 +9,6 @@ output:
     css: bootstrap-switch.min.css
     highlight: kate
     mathjax: null
-    theme: flatly
     toc: yes
     toc_depth: 4
 vignette: >
@@ -483,7 +482,7 @@ library(C3)
 C3Gauge("hello, world")
 ```
 
-### Ok, what just happend?
+### Ok, what just happened?
 
 The `scaffoldWidget` function created a number of files and directories for us.
 
