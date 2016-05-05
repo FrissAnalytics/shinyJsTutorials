@@ -607,7 +607,7 @@ C3Gauge <- function(message, width = NULL, height = NULL) {
 By default this function is created with three arguments: `message`, `width` and `height`. 
 
 
-In the default code, the `message` argument is any data that is passed on to the renderValue function in the C3Gauge.js code. 
+In the template code R generated, the `message` argument is any data that is passed on to the renderValue function in the C3Gauge.js code. 
 
 
 The body of `C3Gauge` consists of two parts. First, a list called `x` is created which will contain all data passed on to the widget. This can be a single value, a data.frame or a complex list holding all sorts of things. Next, the `createWidget` function is called with a `name`, our data `x`, the widget `width`, `height` and `package`, the name of the package our widget is in.
