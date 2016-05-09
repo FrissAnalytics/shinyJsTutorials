@@ -1,9 +1,0 @@
-name: GaugeAppNoUpdates
-account: frissdemo
-server: shinyapps.io
-appId: 98246
-bundleId: 434618
-url: https://frissdemo.shinyapps.io/GaugeAppNoUpdates/
-when: 1461671029.10987
-asMultiple: FALSE
-asStatic: FALSE
