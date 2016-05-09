@@ -475,9 +475,9 @@ At first these steps may appear a bit technical, as might the explanation stated
 
 The `scaffoldWidget` function is the function which creates the actual template. With the first argument, we specify the name we want our widget to have i.e. C3Gauge. We set the edit argument to FALSE because for now we do not want the created files to be opened.
 
-After executing the above code we now have a dummy widget that creates a simple div on the page with dynamic text in it.
+After executing the above code, we now have a dummy widget that creates a simple div on the page with dynamic text in it.
 
-To check if everything works, we install our newly created package. The next code snippet, loads the package we just created and runs the template code which should display a simple "hello world!" message in the viewer pane in RStudio.
+To check if everything works, we install our newly created package. The next code snippet loads the package we just created and runs the template code which should display a simple "hello world!" message in the viewer pane in RStudio.
 
 ```R
 library(C3)
@@ -520,8 +520,7 @@ The "R" folder contains the file "C3Gauge.R", which contains a template function
 
 Before we can create our gauge, we need to include several external dependencies i.e. we need to include c3.min.js, c3.min.css and d3.v3.min.js from the extended gauge example (see above). 
 
-To separate external code dependencies from our widget code, it is often convenient to create a separate "lib" folder in which we copy all external dependencies. As a first step, manually create a "lib" folder in the "htmlwidgets" folder. Then, unzip the content of [this](https://github.com/FrissAnalytics/shinyJsTutorials/blob/master/tutorials/tutorial_01_lib.zip?raw=true) ZIP file into the "lib"
-folder. The ZIP file contains c3.min.js, c3.min.css and d3.v3.min.js and makes sure that everyone who creates this widget uses the same version of these files. A more advanced way of including such dependencies is to use [bower](http://bower.io/) (see the `bowerPkg` argument in `scaffoldWidget`).  
+To separate external code dependencies from our widget code, it is often convenient to create a separate "lib" folder in which we copy all external dependencies. As a first step, manually create a "lib" folder in the "htmlwidgets" folder. Then, unzip the content of [this](https://github.com/FrissAnalytics/shinyJsTutorials/blob/master/tutorials/tutorial_01_lib.zip?raw=true) ZIP file into the "lib" folder. The ZIP file contains c3.min.js, c3.min.css and d3.v3.min.js and makes sure that everyone who creates this widget uses the same version of these files. A more advanced way of including such dependencies is to use [bower](http://bower.io/) (see the `bowerPkg` argument in `scaffoldWidget`).  
 
 
 The next step is to edit the C3Gauge.yaml file R created for us. This file specifies the external dependencies we want to use and their location within the `/inst` folder. In our case, the yaml file we're after looks like this:
