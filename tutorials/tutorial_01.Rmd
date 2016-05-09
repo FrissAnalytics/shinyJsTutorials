@@ -483,7 +483,7 @@ To check if everything works, we install our newly created package. The next cod
 library(C3)
 C3Gauge("hello, world")
 ```
-### Ok, what just happend?
+### Ok, what just happened?
 
 The previous sequence generated a number of folders and files for us in the current working directory.
 

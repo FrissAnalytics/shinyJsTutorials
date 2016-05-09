@@ -171,7 +171,7 @@ $(document).ready(function () {
 </ul></li>
 <li><a href="#extending-the-gauge">Extending the gauge</a></li>
 <li><a href="#creating-the-widget">Creating the widget</a><ul>
-<li><a href="#ok-what-just-happend">Ok, what just happend?</a></li>
+<li><a href="#ok-what-just-happened">Ok, what just happened?</a></li>
 <li><a href="#including-external-dependencies">Including external dependencies</a></li>
 <li><a href="#step-i-writing-javascript-code-for-our-widget">Step I: writing JavaScript code for our widget</a></li>
 <li><a href="#step-ii-writing-r-code-for-our-widget">Step II: writing R code for our widget</a></li>
@@ -502,8 +502,8 @@ devtools::<span class="kw">create</span>(<span class="st">&quot;C3&quot;</span>)
 <p>To check if everything works, we install our newly created package. The next code snippet, loads the package we just created and runs the template code which should display a simple “hello world!” message in the viewer pane in RStudio.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(C3)
 <span class="kw">C3Gauge</span>(<span class="st">&quot;hello, world&quot;</span>)</code></pre></div>
-<div id="ok-what-just-happend" class="section level3">
-<h3>Ok, what just happend?</h3>
+<div id="ok-what-just-happened" class="section level3">
+<h3>Ok, what just happened?</h3>
 <p>The previous sequence generated a number of folders and files for us in the current working directory.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">devtools::<span class="kw">create</span>(<span class="st">&quot;C3&quot;</span>)  </code></pre></div>
 <p>First, the call to <code>create</code> generates a C3 folder in our working directory, which includes an empty R folder and some additional files required to create an R package. This command is similar (though not identical) to creating a package via the RSTUDIO file menu.</p>
@@ -538,7 +538,7 @@ devtools::<span class="kw">create</span>(<span class="st">&quot;C3&quot;</span>)
   script<span class="op">:</span> ./lib/<span class="va">c3</span>.<span class="va">min</span>.<span class="at">js</span>
   style<span class="op">:</span> ./lib/<span class="va">c3</span>.<span class="va">min</span>.<span class="at">css</span>
   </code></pre></div>
-<p>You can copy/paste the above chunk into the C3Gauge.yaml file R created for us. Of note, the yaml file is sensitive to the way you indent it, so beware you use the correct number of spaces. We have now set up everything to create our first widget!</p>
+<p>You can copy/paste the above chunk into the C3Gauge.yaml file R created for us. Of note, the yaml file is sensitive to the way you indent it, so make sure you use the correct number of spaces. We have now set up everything to create our first widget!</p>
 </div>
 <div id="step-i-writing-javascript-code-for-our-widget" class="section level3">
 <h3>Step I: writing JavaScript code for our widget</h3>
