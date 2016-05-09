@@ -540,7 +540,7 @@ dependencies:
   
 ```
 
-You can copy/paste the above chunk into the C3Gauge.yaml file R created for us. Of note, the yaml file is sensitive to the way you indent it, so beware you use the correct number of spaces. We have now set up everything to create our first widget!
+You can copy/paste the above chunk into the C3Gauge.yaml file R created for us. Of note, the yaml file is sensitive to the way you indent it, so make sure you use the correct number of spaces. We have now set up everything to create our first widget!
 
 ### Step I: writing JavaScript code for our widget
 
