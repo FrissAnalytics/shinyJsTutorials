@@ -79,7 +79,7 @@ Each row represents a new screening. The column `id` provides a unique case, whi
 
 
 
-In the screenshot above, the four [gauges](http://c3js.org/samples/chart_gauge.html) indicate the percentage of RED cases for a specific time period. You can select the percentages for different risk groups with the dropdown menu on the left. The four [pie](http://c3js.org/samples/chart_pie.html) charts indicate the distribution of the screenings over the various processes, labels, product and branches. The bar + line chart is an example of a c3.js [combination chart](http://c3js.org/samples/chart_combination.html) with dual y-axes and a single x-axis indicating time. The gray bars indicate the total number of screenings for each week (left y-axis), while the green, amber and red lines correspond to the percentage of cases which are estimated as GREEN, AMBER or RED, respectively (right y-axis). Finally, the bottom chart shows the same information, but this time as a [stacked area chart](http://c3js.org/samples/chart_area_stacked.html). The toggle button on the left allows you to toggle between displaying percentages or absolute counts. 
+In the screenshot above, the four [gauges](http://c3js.org/samples/chart_gauge.html) indicate the percentage of RED cases for a specific time period. You can select the percentages for different risk groups with the drop-down menu on the left. The four [pie](http://c3js.org/samples/chart_pie.html) charts indicate the distribution of the screenings over the various processes, labels, product and branches. The bar + line chart is an example of a c3.js [combination chart](http://c3js.org/samples/chart_combination.html) with dual y-axes and a single x-axis indicating time. The gray bars indicate the total number of screenings for each week (left y-axis), while the green, amber and red lines correspond to the percentage of cases which are estimated as GREEN, AMBER or RED, respectively (right y-axis). Finally, the bottom chart shows the same information, but this time as a [stacked area chart](http://c3js.org/samples/chart_area_stacked.html). The toggle button on the left allows you to toggle between displaying percentages or absolute counts. 
 
 
 For each chart type, we'll create a separate [htmlwidget](http://www.htmlwidgets.org/). For the toggle button, we'll make a shiny [input binding](http://shiny.rstudio.com/articles/building-inputs.html) (see below). 
@@ -457,23 +457,25 @@ In order to create an htmlwidget, we need to create an R package. This is where 
 Luckily, the devtools and htmlwidget packages make it very easy to create a new package and to set up a basic skeleton for our widget. The next code chunk creates a new R package that contains template code which we can use to build our widget:
 
 ```R
-devtools::create("C3")                                    # create package using devtools
-setwd("C3")                                               # navigate to package dir
-htmlwidgets::scaffoldWidget("C3Gauge","c3",edit=FALSE)    # create widget scaffolding
-devtools::install()                                       # install package so we can test it
+# create package using devtools
+devtools::create("C3")  
+
+# navigate to package dir
+setwd("C3")       
+
+# create widget scaffolding
+scaffoldWidget("C3Gauge", edit = FALSE) 
+
+# install package so we can test it
+install()                                   
 ```
 
 At first these steps may appear a bit technical, as might the explanation stated below. Don't worry, soon these steps become second nature once you have created a few widgets. 
 
 
-The `scaffoldWidget` function is the function which creates the actual template. 
+The `scaffoldWidget` function is the function which creates the actual template. With the first argument, we specify the name we want our widget to have i.e. C3Gauge. We set the edit argument to FALSE because for now we do not want the created files to be opened.
 
-With the first argument, we specify the name we want our widget to have. 
-
-The second argument is optional and states the name of the JavaScript library on <a href="http://bower.io/" target="_blank">bower</a> that we want to use. Bower is a web component manager which you can use to install a component and all its dependencies. In our case, we want to include c3.js and its dependencies. When you run the above command, you can see that c3.js and its dependencies, i.e. d3.js, are downloaded and put in the package folder we just created. You can find them in the folder C3Gauge/inst/htmlwidgets/lib. 
-
-Instead of using bower, you can also manually insert the appropriate files in the "lib" folder. 
-The "lib" folder is the default location for all the external libraries you will use in your widget. Of note, here we set edit to FALSE because for now we do not want to open an editor to edit our files.
+After executing the above code we now have a dummy widget that creates a simple div on the page with dynamic text in it.
 
 To check if everything works, we install our newly created package. The next code snippet, loads the package we just created and runs the template code which should display a simple "hello world!" message in the viewer pane in RStudio.
 
@@ -481,28 +483,63 @@ To check if everything works, we install our newly created package. The next cod
 library(C3)
 C3Gauge("hello, world")
 ```
+### Ok, what just happend?
 
-### Ok, what just happened?
+The previous sequence generated a number of folders and files for us in the current working directory.
 
-The `scaffoldWidget` function created a number of files and directories for us.
+```R
+devtools::create("C3")  
+```
 
-First, an "htmlwidgets" directory is created within the "inst" directory of our C3 package.
+First, the call to `create` generates a C3 folder in our working directory, which includes an empty R folder and some additional files required to create an R package. This command is similar (though not identical) to creating a package via the RSTUDIO file menu. 
 
-The "inst" folder is a generic R package folder where all external package dependencies are stored. We use this whenever we want to include files in our package.
+
+```R
+scaffoldWidget("C3Gauge",edit=FALSE) 
+```
+
+Next, `scaffoldWidget` creates three more files being 
+
+  1) an R file, see R/C3Gauge.R
+  2) a yaml file, see inst/htmlwidgets/C3Gauge.yaml
+  3) a JavaScript file, see inst/htmlwidgets/C3Gauge.js
+
+
+Inside our C3 folder we can see that R generated an "R" folder and an "inst" folder. The "inst" folder is a generic R package folder where all external package dependencies are stored. We use this whenever we want to include files in our package.
 
 Within the "inst" folder an "htmlwidget" sub folder is created. Here you'll find the following files:
 
   * C3Gauge.js: This file contains the client side code of our binding. In our case, this will be the JavaScript code described in the above examples extended with some extra logic to handle data coming from R.
   
-  * C3Gauge.yaml: This file lists all dependencies and their location in the folder structure for the widget. Because we used bower to get all the external dependencies this file is automatically filled in by R.
+  * C3Gauge.yaml: This file lists all dependencies and their location in the folder structure for the widget.
   
-Within this folder, we find the "lib" folder which contains the external JavaScript files for c3.js and d3.js downloaded by bower.
+The "R" folder contains the file "C3Gauge.R", which contains a template function 'C3Gauge' (see below).
 
 
-In the main folder of our project, we find an "R" folder with the file "C3Gauge.R", which contains a template function 'C3Gauge' which has data and sizing information as arguments. C3Gauge propagates this information to the right JavaScript code and then displays the widget.
+### Including external dependencies
 
-Besides this function, an `output` and a `render` function is created which we can use to integrate our widget into a Shiny app.
+Before we can create our gauge, we need to include several external dependencies i.e. we need to include c3.min.js, c3.min.css and d3.v3.min.js from the extended gauge example (see above). 
 
+To separate external code dependencies from our widget code, it is often convenient to create a separate "lib" folder in which we copy all external dependencies. As a first step, manually create a "lib" folder in the "htmlwidgets" folder. Then, unzip the content of this ZIP file into the "lib"
+folder. The ZIP file contains c3.min.js, c3.min.css and d3.v3.min.js and makes sure that everyone who creates this widget uses the same version of these files. A more advanced way of including such dependencies is to use [bower](http://bower.io/) (see the `bowerPkg` argument in `scaffoldWidget`).  
+
+
+The next step is to edit the C3Gauge.yaml file R created for us. This file specifies the external dependencies we want to use and their location within the `/inst` folder. In our case, the yaml file we're after looks like this:
+
+```javascript
+dependencies:
+- name: d3
+  version: 3.5.16
+  src: htmlwidgets
+  script: ./d3.v3.min.js
+- name: c3
+  version: 0.4.10
+  src: htmlwidgets
+  script: ./c3.min.js
+  style: ./c3.min.css
+```
+
+You can copy/paste the above chunk into the C3Gauge.yaml file R created for us. Of note, the yaml file is sensitive to the way you indent it, so beware you use the correct number of spaces. We have now set up everything to create our first widget!
 
 ### Step I: writing JavaScript code for our widget
 
@@ -539,7 +576,7 @@ HTMLWidgets.widget({
 });
 ```
 
-In `HTMLWidgets.widget` we have to give our component a name and we have to define the function `factory`. Currently, the value of 'type' can only have a single value being "output". In this tutorial we take a shortcut and only implement a naive version of the `renderValue` function. Luckily, c3.js handles re-sizing automatically, so we don’t have to tell our widget what to do in case its container element changes size i.e. we don't explicitly have to write a `resize` function.
+In `HTMLWidgets.widget` we have to give our component a name and we have to define the function `factory`. Currently, the value of 'type' can only have a single value being "output". In this tutorial we take a shortcut and only implement a naive version of the `renderValue` function. Luckily, c3.js handles re-sizing automatically, so we don't have to tell our widget what to do in case its container element changes size i.e. we don't explicitly have to write a `resize` function.
 
 As a first step, let's copy the code from our previous JavaScript example in the `renderValue` function. For the moment let's not worry how JavaScript gets its data from R.
 
