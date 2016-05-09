@@ -531,12 +531,13 @@ dependencies:
 - name: d3
   version: 3.5.16
   src: htmlwidgets
-  script: ./d3.v3.min.js
+  script: ./lib/d3.v3.min.js
 - name: c3
   version: 0.4.10
   src: htmlwidgets
-  script: ./c3.min.js
-  style: ./c3.min.css
+  script: ./lib/c3.min.js
+  style: ./lib/c3.min.css
+  
 ```
 
 You can copy/paste the above chunk into the C3Gauge.yaml file R created for us. Of note, the yaml file is sensitive to the way you indent it, so beware you use the correct number of spaces. We have now set up everything to create our first widget!
