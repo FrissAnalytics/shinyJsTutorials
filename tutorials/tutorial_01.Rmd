@@ -520,7 +520,7 @@ The "R" folder contains the file "C3Gauge.R", which contains a template function
 
 Before we can create our gauge, we need to include several external dependencies i.e. we need to include c3.min.js, c3.min.css and d3.v3.min.js from the extended gauge example (see above). 
 
-To separate external code dependencies from our widget code, it is often convenient to create a separate "lib" folder in which we copy all external dependencies. As a first step, manually create a "lib" folder in the "htmlwidgets" folder. Then, unzip the content of this ZIP file into the "lib"
+To separate external code dependencies from our widget code, it is often convenient to create a separate "lib" folder in which we copy all external dependencies. As a first step, manually create a "lib" folder in the "htmlwidgets" folder. Then, unzip the content of [this](https://github.com/FrissAnalytics/shinyJsTutorials/blob/master/tutorials/tutorial_01_lib.zip?raw=true) ZIP file into the "lib"
 folder. The ZIP file contains c3.min.js, c3.min.css and d3.v3.min.js and makes sure that everyone who creates this widget uses the same version of these files. A more advanced way of including such dependencies is to use [bower](http://bower.io/) (see the `bowerPkg` argument in `scaffoldWidget`).  
 
 
