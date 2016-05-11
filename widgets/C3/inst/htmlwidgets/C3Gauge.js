@@ -11,7 +11,7 @@ HTMLWidgets.widget({
         renderValue: function(x) {
 
         // Check if we have a reference to our chart
-        if(!$(el).data("state")){
+        if(typeof(el.chart) == 'undefined'){
         	// create a chart and set options
         	// note that via the c3.js API we bind the chart to the element with id equal to chart1
         	var chart = c3.generate({
@@ -32,17 +32,12 @@ HTMLWidgets.widget({
         		}
         	});
 
-  	      $(el).data("state", {
-            chart: chart
-          });
-
+  	      el.chart = chart;
 
         }else{
 
-          var state = $(el).data("state");
-
           // Update the chart if it already exists
-          state.chart.load({json: x});
+          el.chart.load({json: x});
         }
 
       },
