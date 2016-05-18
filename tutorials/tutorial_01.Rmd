@@ -711,7 +711,7 @@ C3Gauge <- function(message, width = NULL, height = NULL) {
     x,
     width = width,
     height = height,
-    package = 'C3Gauge'
+    package = 'C3'
   )
 }
 ```

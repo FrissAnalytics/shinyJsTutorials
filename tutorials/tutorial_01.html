@@ -12,7 +12,7 @@
 <meta name="author" content="Herman Sontrop" />
 <meta name="author" content="Erwin Schuijtvlot" />
 
-<meta name="date" content="2016-05-09" />
+<meta name="date" content="2016-05-19" />
 
 <title>Shiny JavaScript Tutorials</title>
 
@@ -148,7 +148,7 @@ $(document).ready(function () {
 <h1 class="title toc-ignore">Shiny JavaScript Tutorials</h1>
 <h4 class="author"><em>Herman Sontrop</em></h4>
 <h4 class="author"><em>Erwin Schuijtvlot</em></h4>
-<h4 class="date"><em>2016-05-09</em></h4>
+<h4 class="date"><em>2016-05-19</em></h4>
 
 </div>
 
@@ -498,8 +498,8 @@ devtools::<span class="kw">create</span>(<span class="st">&quot;C3&quot;</span>)
 <span class="kw">install</span>()                                   </code></pre></div>
 <p>At first these steps may appear a bit technical, as might the explanation stated below. Don’t worry, soon these steps become second nature once you have created a few widgets.</p>
 <p>The <code>scaffoldWidget</code> function is the function which creates the actual template. With the first argument, we specify the name we want our widget to have i.e. C3Gauge. We set the edit argument to FALSE because for now we do not want the created files to be opened.</p>
-<p>After executing the above code we now have a dummy widget that creates a simple div on the page with dynamic text in it.</p>
-<p>To check if everything works, we install our newly created package. The next code snippet, loads the package we just created and runs the template code which should display a simple “hello world!” message in the viewer pane in RStudio.</p>
+<p>After executing the above code, we now have a dummy widget that creates a simple div on the page with dynamic text in it.</p>
+<p>To check if everything works, we install our newly created package. The next code snippet loads the package we just created and runs the template code which should display a simple “hello world!” message in the viewer pane in RStudio.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(C3)
 <span class="kw">C3Gauge</span>(<span class="st">&quot;hello, world&quot;</span>)</code></pre></div>
 <div id="ok-what-just-happened" class="section level3">
@@ -662,7 +662,7 @@ C3Gauge &lt;-<span class="st"> </span>function(message, <span class="dt">width =
     x,
     <span class="dt">width =</span> width,
     <span class="dt">height =</span> height,
-    <span class="dt">package =</span> <span class="st">'C3Gauge'</span>
+    <span class="dt">package =</span> <span class="st">'C3'</span>
   )
 }</code></pre></div>
 <p>while the code in C3Gauge.js looks like this:</p>
