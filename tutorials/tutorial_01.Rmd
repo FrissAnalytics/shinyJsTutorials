@@ -41,10 +41,10 @@ The tutorials below are intended for the intermediate shiny enthusiast with limi
 The widgets we are going to build are all based on <a href="http://c3js.org/" target="\_blank">c3.js</a>, which in turn is built on the more extensive JavaScript visualization library <a href="https://d3js.org/" target="\_blank">d3.js</a>. C3.js provides a variety of chart types, such as gauges, pie charts, stacked bar charts, stacked area charts and charts to display time series. Furthermore, c3.js provides a variety of <a href="http://c3js.org/examples.html" target="\_blank">APIs</a> and callbacks to access and update the state of a chart after it's rendered.
 
 
-In order to master the technique of creating widgets, we will construct an interactive dashboard application which includes a variety of htmlwidgets based on c3.js. A screenshot of the end result can be seen below. A live version of a more complete version of our dashboard can be seen <a href="https://frissdemo.shinyapps.io/FrissDashboard/" target="_blank">here</a> (this app is best viewed on a high res screen). 
+In order to master the technique of creating widgets, we will construct an interactive dashboard application which includes a variety of htmlwidgets based on c3.js. A screenshot of the end result can be seen below. A live version of a more complete version of our dashboard can be seen <a href="https://js-tutorial.shinyapps.io/dashboardApp/" target="_blank">here</a> (this app is best viewed on a high res screen). 
 
 <p style = "margin:25px">
-  <img src = "dashboard.png" width="100%"></img>
+  <a href = "https://js-tutorial.shinyapps.io/dashboardApp/" target = "_blank"><img src = "dashboard.png" width="100%"></img></a>
   <div style = "text-align:center">the end result of the tutorials</div>  
 </p>
 
