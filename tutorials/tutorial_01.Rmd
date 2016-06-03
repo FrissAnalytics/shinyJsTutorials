@@ -229,7 +229,7 @@ The code creates a variable called `gaugeData`. `gaugeData` is an example of a J
 When we use R to set the value of the gauge to 75, we must make sure that the final data that is sent to the chart looks like this. In this case, the data representation we're after is simple. However, in general this often is harder.
 
 
-Internally, shiny and htmlwidgets use the R package [jsonlite](https://cran.r-project.org/web/packages/jsonlite/index.html) to convert R data structures to JSON. For more information about jsonlite, take a look at the package [vignette](https://cran.r-project.org/web/packages/jsonlite/vignettes/json-aaquickstart.html). Especially useful are the `fromJSON` and `toJSON` functions. The first tells you how an R object will be translated into JSON, while the latter does the reverse. Just play around to see how it works!
+Internally, shiny and htmlwidgets use the R package [jsonlite](https://cran.r-project.org/web/packages/jsonlite/index.html) to convert R data structures to JSON. For more information about jsonlite, take a look at the package [vignette](https://cran.r-project.org/web/packages/jsonlite/vignettes/json-aaquickstart.html). Especially useful are the `fromJSON` and `toJSON` functions. The first tells you how JSON will be translated into an R object, while the latter does the reverse. Just play around to see how it works!
 
 
 For a quick example in R, run this:
