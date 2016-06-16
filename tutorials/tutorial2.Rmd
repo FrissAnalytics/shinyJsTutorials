@@ -114,7 +114,7 @@ In this context, its important to realize two basic states in the lifetime of a 
   1) the chart does not yet exist
   2) the chart already exists and we want to pass in new data, set options or send messages to it
 
-In pseudo code our new factory method looks something like this
+In pseudo code our new factory method looks something like this:
 
 
 ```javascript
@@ -173,7 +173,7 @@ chart.load({
 });
 ```
 
-If we combine this code snippet with the previous factory pseudo code we end up with the code we're looking for
+If we combine this code snippet with the previous factory pseudo code we end up with the code we're looking for:
 
 ``` javascript
 HTMLWidgets.widget({
@@ -228,26 +228,33 @@ HTMLWidgets.widget({
 ```
 Of note, for brevity here we omitted the `resize` method (which is optional).
 
-When we re-install and reload the package and run our app we can see the gauges updating smoothly as in this live toy app (click on the image below).
+### Code repository and demo app
+
+You can find the complete code for the updated gauge widget, as well as the code for the widgets below at [this](https://github.com/FrissAnalytics/shinyJsTutorials/tree/master/tutorials/materials2/C3) repo. The C3 package contains updated code for the gauge widget, a pie chart widget, a combination bar + line chart and a stacked area chart. The code of the latter three widgets is discussed in detail below. The R code of these widgets can be found [here](https://github.com/FrissAnalytics/shinyJsTutorials/tree/master/tutorials/materials2/C3/R). The JavaScript and YAML files for each widget are located [here](https://github.com/FrissAnalytics/shinyJsTutorials/tree/master/tutorials/materials2/C3/inst/htmlwidgets).
+
+You can install the updated C3 package by running the following command in R:
+
+``` r
+devtools::install_github("FrissAnalytics/shinyJsTutorials/tutorials/materials2/C3")
+```
+
+A shiny demo app containing all the widgets can be found [here](https://github.com/FrissAnalytics/shinyJsTutorials/tree/master/tutorials/materials2/C3_demo). To see the app in action press the screenshot below. Below we show you how to create the widgets, which you can create with `C3Gauge`,`C3Pie`,`C3LineBarChart`, and `C3StackedAreaChart`. In a shiny, these functions are paired with the output functions (in ui.r) `C3GaugeOutput`,`C3PieOutput`,`C3LineBarChartOutput`,`C3StackedAreaChartOutput`, and the render functions (in server.R) `renderC3Gauge`,`renderC3Pie`,`renderC3LineBarChart`,`renderC3StackedAreaChart`. Note that you can also use the widgets in a MarkDown document as well!
 
 
-<p style = "margin:25px">
-  <a href = "https://frissdemo.shinyapps.io/GaugeApp/" target = "_blank"><img src = "gauges.png" width="100%"></img></a>
-  <div style = "text-align:center">toy app with animated gauges</div>  
+<p style = "margin: 40px 0px">
+  <a href = "https://frissdemo.shinyapps.io/GaugeApp/" target = "_blank"><img src = "C3_dashboard.png" width="100%"></img></a>
+  <div style = "text-align:center">demo app with animated C3 widgets. Click on the image to launch the app!</div>  
 </p>
 
 
-The complete version of our C3 gauge widget can be found [here](https://github.com/FrissAnalytics/shinyJsTutorials/tree/master/widgets/C3) and it can directly be installed by running the following command in R
+In the sections below we presented the details of the C3 pie chart, combination line + bar chart and stacked area chart. You can also experiment with code changes right in the browser with the online app discussed in the next section.  
 
-```R
- devtools::install_github("FrissAnalytics/shinyJsTutorials/widgets/C3")
-```
 
 ### Htmlwidget fiddle app
 
 Building, installing and loading a package each time you want to test something can become a bit cumbersome, especially if you just want to play around with an example and experiment to find our how something works. For the purpose of these tutorial series, we created a small helper online app in which you directly can see what the impact is when you change a line or code, similar to a JavaScript fiddle. You can find the online app [here](https://js-tutorial.shinyapps.io/WidgetFiddle/).
 
-<p style = "margin:25px">
+<p style = "margin:25px 0px">
   <a href = "https://js-tutorial.shinyapps.io/WidgetFiddle/" target = "_blank"><img src = "htmlwidgetsFiddle_app.png" width="100%"></img></a>
   <div style = "text-align:center">htmlwidget fiddle app. Play with C3 code & create a package right from the browser!</div>  
 </p>
@@ -277,7 +284,7 @@ With the gauge chart fully handled, let's create a C3 based pie chart with anima
 
 The steps of creating other C3 widgets are very similar to the process described for the gauge widget. In the remainder we therefore focus on complete code segments for the R and JavaScript parts, in which various parts are explained via code comments inside the code blocks. 
 
-In the charts below we use various C3 specific chart options. A complete overview of all these options (including additional classes & methods) can be found in the [C3 reference](http://c3js.org/reference.html). In addition, the complete R, YAML and JavaScript code for all the widgets constructed in this tutorial can be found here [add ref].
+In the charts below we use various C3 specific chart options. A complete overview of all these options (including additional classes & methods) can be found in the [C3 reference](http://c3js.org/reference.html). In addition, the complete R, YAML and JavaScript code for all the widgets constructed in this tutorial can be found [here](https://github.com/FrissAnalytics/shinyJsTutorials/tree/master/tutorials/materials2/C3).
 
 
 Similar to the first tutorial, we can create the template code for a C3 pie widget via the R command:
@@ -383,31 +390,23 @@ HTMLWidgets.widget({
 });
 ```
 
-In the JavaScript code above we use the helper function `getDiffKeys` to determine the difference in keys between the old and new data. In R, computing set differences is easy e.g. via `setdiff`. Obviously, in JavaScript we cannot use this function. How can we compute this difference? 
+In the JavaScript code above, just before the `chart.load` command, we compute the difference between keys in the old (current) data and the new data. In R, computing set differences is easy via `setdiff`. Obviously, in JavaScript we cannot use this function. How can we compute this difference? 
 
-Luckily, in JavaScript there are many tool-belt helper libraries that offer many handy functions to manipulate data. A popular library worth checking out is [underscore](http://underscorejs.org/), which we use to help us work with data keys. Using underscore, the complete code of our helper function looks like this:
-
-```javascript
-function getDiffKeys(chart,x){
-  // old keys
-  var curKeys = _.keys(chart.x());
-  
-  // new keys
-  var newKeys = _.keys(x.values);
-  
-  // difference
-  diff = _.difference(curKeys,newKeys);
-  
-  return(diff)
-}
-```
-
-We put this function in a seperate file "C3common.js" because it will be shared with other widgets. In our yaml we will refer to this file.
-
-This code snippet uses [_.keys](http://underscorejs.org/#keys) and [_.difference](http://underscorejs.org/#difference) from underscore. Don't worry if this snippet looks complicated, it's just a little helper routine that we use in various C3 widgets. Even though a complete understanding of this code is not necessary, we highly recommend you check out what underscore can do, as being able to work with JavaScript objects and arrays is really helpful in building widgets!
+Luckily, in JavaScript there are many tool-belt helper libraries that offer many handy functions to manipulate data. A popular library worth checking out is [underscore](http://underscorejs.org/), which we use to help us work with data keys. Here we used the underscore functions [_.keys](http://underscorejs.org/#keys) and [_.difference](http://underscorejs.org/#difference). Via `_.keys` we extract the key information out of the appropriate objects and via `_.difference` we compute the set difference:
 
 
-The YAML file for our pie widget looks like this:
+``` javascript
+  var old_keys = _.keys(chart.x());
+  var new_keys = _.keys(x.values);
+  var diff     = _.difference(old_keys,new_keys);
+```        
+        
+For the remaining two charts (discussed below) we use the same concept. The objects we put in `_.keys` are slightly different though. 
+
+Notice that all the function in underscore start with a `_`, hence the name. Even though a complete understanding of the last code snipped is not necessary, we highly recommend you check out what underscore can do, as being able to work with JavaScript objects and arrays is really helpful in building widgets! 
+
+
+Finally, the YAML file for our pie widget looks like this:
 
 ```javascript
 dependencies:
@@ -426,16 +425,13 @@ dependencies:
   script: ./underscore-min.js
 ```
 
+Note that we added a reference to underscore.
 
-Note that we added a reference to underscore, which is needed by our helper function to compute differences in keys (see above).
-
-Using the code in the repo [add link] we can test our C3 pie widget via
+You can test drive the C3 pie widget via:
 
 ```R
-devtools::install()
-C3Pie(message=list(data1=200,data2=300,data3=100))
+C3Pie(values=list(data1=200,data2=300,data3=100))
 ```
-
 
 ## C3 combination chart
 
@@ -603,7 +599,7 @@ Of note, in a later part of the tutorial series we will use the subchart we crea
 
 Finally, the YAML file for this widget is the same of for our pie chart. 
 
-When we install our C3 package [add ref], we can create a C3LineBarChart via:
+When we install our [C3 package](https://github.com/FrissAnalytics/shinyJsTutorials/tree/master/tutorials/materials2/C3), we can create a C3LineBarChart via:
 
 ```R
 dataset <- data.frame(Time=c("2016-01-05","2016-01-12","2016-01-24"),

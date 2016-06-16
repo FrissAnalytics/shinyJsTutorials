@@ -12,7 +12,3 @@ dependencies:
   version: 1.8.3
   src: htmlwidgets/lib/underscore
   script: ./underscore-min.js
-- name: C3commonCode
-  version: 1
-  src: htmlwidgets
-  script: ./C3common.js

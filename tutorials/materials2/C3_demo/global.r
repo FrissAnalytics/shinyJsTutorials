@@ -26,3 +26,14 @@ getSeries <- function( n = 100, drift = 0.1, walk = 4, scale = 100){
 
 # make sure we get the same data each time
 set.seed(100)
+
+# helpers to center text
+h3c <- function(text){
+  h3(text, style = "text-align:center")
+}
+
+h4c <- function(text){
+  h4(text, style = "text-align:center")
+}
+
+
