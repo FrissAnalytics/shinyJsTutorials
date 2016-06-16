@@ -1,0 +1,19 @@
+dependencies:
+- name: d3
+  version: 3.5.0
+  src: htmlwidgets/lib/d3
+  script: ./d3.min.js
+- name: c3
+  version: 0.4.10
+  src: htmlwidgets/lib/c3
+  script: ./c3.min.js
+  style: ./c3.min.css
+- name: underscore
+  version: 1.8.3
+  src: htmlwidgets/lib/underscore
+  script: ./underscore-min.js
+- name: C3commonCode
+  version: 1
+  src: htmlwidgets
+  script: ./C3common.js
+
