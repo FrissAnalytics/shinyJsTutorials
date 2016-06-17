@@ -19,7 +19,7 @@ vignette: >
 
 ## Introduction
 
-In the [previous](http://shiny.rstudio.com/tutorial/js-lesson1/) tutorial, we created a simple [C3](http://c3js.org/) based gauge widget. In this tutorial, we see how we can expand the widget to facilitate smooth transitions as can be seen in the [showcase Dashboard app](https://js-tutorial.shinyapps.io/dashboardApp/). Next to an improved gauge, we also provide code and examples for the other charts types shown in the dashboard i.e. a pie chart, a line + bar chart and a stacked area chart. In this tutorial we focus on creating the charts and to provide data in such a way that C3 can animate the transition between old and new data.
+In the [previous](http://shiny.rstudio.com/tutorial/js-lesson1/) tutorial, we created a simple [C3](http://c3js.org/) based gauge widget. In this tutorial, we see how we can expand the widget to facilitate smooth transitions as can be seen in the [showcase dashboard app](https://js-tutorial.shinyapps.io/dashboardApp/). Next to an improved gauge, we also provide code and examples for the other charts types shown in the dashboard i.e. a pie chart, a line + bar chart and a stacked area chart. In this tutorial we focus on creating the charts and to provide data in such a way that C3 can animate the transition between old and new data.
 
 
 <iframe width='100%' height='300' src='http://jsfiddle.net/FrissAnalytics/tx38gstp/9/embedded/result' allowfullscreen='allowfullscreen' frameborder='0'></iframe>
@@ -76,7 +76,7 @@ factory: function () {return {
 }};
 ```
 
-is equivalent to
+is equivalent to:
 
 ```javascript
 // factory is a method of some object
@@ -243,7 +243,7 @@ A shiny demo app containing all the widgets can be found [here](https://github.c
 
 
 <p style = "margin: 40px 0px">
-  <a href = "https://frissdemo.shinyapps.io/GaugeApp/" target = "_blank"><img src = "C3_dashboard.png" width="100%"></img></a>
+  <a href = "https://js-tutorial.shinyapps.io/C3_demo/" target = "_blank"><img src = "C3_dashboard.png" width="100%"></img></a>
   <div style = "text-align:center">demo app with animated C3 widgets. Click on the image to launch the app!</div>  
 </p>
 
@@ -267,11 +267,11 @@ Building, installing and loading a package each time you want to test something 
   <div style = "text-align:center">htmlwidget fiddle app. Play with C3 code & create a package right from the browser!</div>  
 </p>
 
-#### about the app
-All widgets in this tutorial series are available in the app. You can select a widget in the drop-down list after which its R code, JavaScript code and YAML contents are loaded in the corresponding tabs. You can then play around with code changes and see the effect by pressing the 'render widget' button. 
+#### About the app
+All widgets in this tutorial series are available in the app. You can select a widget in the drop-down list after which its JavaScript code, R code, and YAML contents are loaded in the corresponding tabs. You can then play around with code changes and see the effect by pressing the 'render widget' button. In the Widgetcall tab you can add your own data and provide the widget render call. 
 
 
-You can also export the  code as a zipped R package, which can be installed by opening the .Rproj file in RStudio and running `devtools::install()`. Currently, the functionality of this app is still limited. We plan to update the functionality of this app during the course of the tutorial series i.e. by allowing you to upload your own data and to add additional JavaScript and CSS files. 
+You can also export the  code as a zipped R package, which can be installed by opening the .Rproj file in RStudio and running `devtools::install()`. Currently, the functionality of this app is limited to rendering C3 based charts. We plan to update the functionality of this app during the course of the tutorial series i.e. by allowing you to add additional JavaScript and CSS files. 
 
 
 ## C3 data update pattern
@@ -284,7 +284,7 @@ To be more specific, when C3 loads a new data set via the `load` method, it will
 Assume we have the following data: `{key1 = 10, key2 = 25}`, and in a next step we want to use: `{key1 = 20, key3 = 30}`. Notice that in the new data key2 is *not* present. Without unloading, loading the new data set will result in the data `{key1 = 20, key2 = 25, key3 = 30}`. In this case C3 updates the data for key1, left the data for key2 unchanged, and added data for key3. In order to make the correct update, we have to remove the data for key2, which we can do via an `unload` statement (see below).
 
 
-## C3 Pie chart widget
+## C3 pie chart widget
 
 With the gauge chart fully handled, let's create a C3 based pie chart with animated transitions! Just like in our [first tutorial](http://shiny.rstudio.com/tutorial/js-lesson1/), let's first take a look at the HTML and JavaScript code via a JSfiddle.
 
@@ -619,7 +619,7 @@ C3LineBarChart(dataset = dataset,colors=colors)
 ```
 
 
-## C3 Stacked area chart widget
+## C3 stacked area chart widget
 
 Our last chart is very similar to the combination chart above. Here we create a C3 [stacked area chart](http://c3js.org/samples/chart_area_stacked.html). As all the concepts for this widget are repetitions from the previous charts we keep the description of this widget brief. Here's a fiddle showing how to code a C3 stacked area chart:
 
