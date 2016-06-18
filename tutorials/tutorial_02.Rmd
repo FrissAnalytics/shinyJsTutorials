@@ -26,7 +26,7 @@ In the [previous](http://shiny.rstudio.com/tutorial/js-lesson1/) tutorial, we cr
 
 <div style = "text-align:center; margin-bottom:25px" >example of a gauge with animated transitions between old and new data</div>  
 
-Before we do all that let's first take a better look at the HTMLWidgets.widget function we saw in the [first tutorial](http://shiny.rstudio.com/tutorial/js-lesson1/), which is related to the concept of factory methods and closures.
+Before we do all that let's first take a better look at the `HTMLWidgets.widget` function we saw in the [first tutorial](http://shiny.rstudio.com/tutorial/js-lesson1/), which is related to the concept of factory methods and closures.
 
 
 ### Factory methods and closures
@@ -104,11 +104,11 @@ The implementation above is known as a <a href='http://www.w3schools.com/js/js_f
 The implication of `renderValue` and `resize` being closures is that they have access to the `el`, `width` and `height` parameters passed to `factory`. Furthermore, we can initialize variables in the body of `factory` (above the definitions of `renderValue` and `resize`) that we want to use during the lifetime of our widget.
 
 
-Now we have a better understanding of what our HTMLWidgets.widget function is doing, let's add some transitions to our gauge widget!
+Now we have a better understanding of what our `HTMLWidgets.widget` function is doing, let's add some transitions to our gauge widget!
 
 ## Adding transitions to a C3 gauge
 
-Even though the gauge widget from the first tutorial works, we can make it even better. The problem is that the widget always creates a completely new new gauge if we send it a value via shiny (using the `renderC3Gauge` function, see [tutorial 1](http://shiny.rstudio.com/tutorial/js-lesson1/). It would be nicer if it would animate its state between the old value and the new value, as can be seen in the example on top. Luckily, C3 can create such transitions automatically. We do have to modify the code of our factory method though. 
+Even though the gauge widget from the first tutorial works, we can make it even better. The problem is that the widget always creates a completely new new gauge if we send it a value via shiny (using the `renderC3Gauge` function, see [tutorial 1](http://shiny.rstudio.com/tutorial/js-lesson1/)). It would be nicer if it would animate its state between the old value and the new value, as can be seen in the example on top. Luckily, C3 can create such transitions automatically. We do have to modify the code of our factory method though. 
 
 In this context, its important to realize two basic states in the lifetime of a chart:
 
@@ -147,13 +147,13 @@ factory: function(el, width, height){
 }
 ```
 
-The factory method has three arguments: `el`, `width` and `height`. Here `el` is the container element created by htmlwidgets where in which we will house our chart. On top we create a variable called `chart`, which initially we set to null, indicating that the chart is not yet initialized. 
+The factory method has three arguments: `el`, `width` and `height`. Here `el` is the container element created by htmlwidgets in which we will house our chart. On top we create a variable called `chart`, which initially we set to null, indicating that the chart is not yet initialized. 
 
-Inside the `renderValue` method we first check if the chart is initialized. If the chart is not initialized, we create a chart via the toy function createChart, which in this case uses information in `x`. Subsequently, we store the chart on `el`, so we can access it later. 
+Inside the `renderValue` method, we first check if the chart is initialized. If the chart is not initialized, we create a chart via the toy function createChart, which in this case uses information in `x`. Subsequently, we store the chart on `el`, so we can access it later. 
 
-Technically, the closure allows us to render the chart even in the first line i.e. at the line `var chart = null;`. In C3, however, we often need information stored in `x` during initialization. Note that `x` contains the data and chart options passed via shiny from R to JavaScript (using jsonlite, see [tutorial 1](http://shiny.rstudio.com/tutorial/js-lesson1/). As C3 often needs information in `x` during initialization, here we initialize the chart inside the `renderValue` method and subsequently check if the chart was already created. This is slightly less elegant, however, it is quite easy and the overhead is minimal.   
+Technically, the closure allows us to render the chart even in the first line i.e. at the line `var chart = null;`. In C3, however, we often need information stored in `x` during initialization. Note that `x` contains the data and chart options passed via shiny from R to JavaScript (using jsonlite, see [tutorial 1](http://shiny.rstudio.com/tutorial/js-lesson1/)). As C3 often needs information in `x` during initialization, here we initialize the chart inside the `renderValue` method and subsequently check if the chart was already created. This is slightly less elegant, however, it is quite easy and the overhead is minimal.   
 
-Note that in all subsequent calls to `renderValue` the chart will be defined. In this case we first retrieve the chart via `el`, which we can access as `renderValue` is a closure, and subsequently call an update method on the chart which again uses information stored in `x`.
+Note that in all subsequent calls to `renderValue` the chart will be defined. In those instances we first retrieve the chart via `el`, which we can access as `renderValue` is a closure, and subsequently call an update method on the chart which again uses information stored in `x`.
 
 Let's convert the previous pseudo code into actual code for our gauge!
 
@@ -231,7 +231,7 @@ Of note, for brevity here we omitted the `resize` method (which is optional).
 
 ### Code repository and demo app
 
-You can find the complete code for the updated gauge widget, as well as the code for the widgets below at [this](https://github.com/FrissAnalytics/shinyJsTutorials/tree/master/tutorials/materials2/C3) repo. The C3 package contains updated code for the gauge widget, a pie chart widget, a combination bar + line chart and a stacked area chart. The code of the latter three widgets is discussed in detail below. The R code of these widgets can be found [here](https://github.com/FrissAnalytics/shinyJsTutorials/tree/master/tutorials/materials2/C3/R). The JavaScript and YAML files for each widget are located [here](https://github.com/FrissAnalytics/shinyJsTutorials/tree/master/tutorials/materials2/C3/inst/htmlwidgets).
+You can find the complete code for the updated gauge widget, as well as the code for the widgets below at [this](https://github.com/FrissAnalytics/shinyJsTutorials/tree/master/tutorials/materials2/C3) repo, which contains a C3 package. The C3 package contains updated code for the gauge widget, a pie chart widget, a combination bar + line chart and a stacked area chart. The code of the latter three widgets is discussed in detail below. The R code of these widgets can be found [here](https://github.com/FrissAnalytics/shinyJsTutorials/tree/master/tutorials/materials2/C3/R). The JavaScript and YAML files for each widget are located [here](https://github.com/FrissAnalytics/shinyJsTutorials/tree/master/tutorials/materials2/C3/inst/htmlwidgets).
 
 You can install the updated C3 package by running the following command in R:
 
@@ -239,7 +239,7 @@ You can install the updated C3 package by running the following command in R:
 devtools::install_github("FrissAnalytics/shinyJsTutorials/tutorials/materials2/C3")
 ```
 
-A shiny demo app containing all the widgets can be found [here](https://github.com/FrissAnalytics/shinyJsTutorials/tree/master/tutorials/materials2/C3_demo). To see the app in action press the screenshot below! 
+In order to help you understand how to use the various C3 widgets created in this tutorial, we've built a shiny C3 demo app that shows how you can use these widgets in a shiny context. You can download this dashboard [here](https://github.com/FrissAnalytics/shinyJsTutorials/tree/master/tutorials/materials2/C3_demo). To see the app in action press the screenshot below! In the next tutorials we will extend the capabilities of these widgets even further when we take a closer look at JavaScript [events](http://www.w3schools.com/js/js_events.asp). 
 
 
 <p style = "margin: 40px 0px">
@@ -248,10 +248,10 @@ A shiny demo app containing all the widgets can be found [here](https://github.c
 </p>
 
 
-Below we show you how to create the widgets, which you can create with `C3Gauge`,`C3Pie`,`C3LineBarChart`, and `C3StackedAreaChart`. 
+Below we show you how to create the widgets, which you can subsequently render with `C3Gauge`,`C3Pie`,`C3LineBarChart`, and `C3StackedAreaChart`. 
 
 
-In a shiny app, these functions are paired with the output functions (in ui.r): `C3GaugeOutput`, `C3PieOutput`, `C3LineBarChartOutput`, `C3StackedAreaChartOutput`, and the render functions (in server.R): `renderC3Gauge`, `renderC3Pie`, `renderC3LineBarChart`, `renderC3StackedAreaChart`. 
+In a shiny app (in ui.r), these functions are paired with the output functions: `C3GaugeOutput`, `C3PieOutput`, `C3LineBarChartOutput`, `C3StackedAreaChartOutput`, and (in server.R) with the render functions: `renderC3Gauge`, `renderC3Pie`, `renderC3LineBarChart`, `renderC3StackedAreaChart`. 
 
 Note that you can also use the widgets in a Markdown document as well!
 
@@ -273,6 +273,7 @@ All widgets in this tutorial series are available in the app. You can select a w
 
 You can also export the  code as a zipped R package, which can be installed by opening the .Rproj file in RStudio and running `devtools::install()`. Currently, the functionality of this app is limited to rendering C3 based charts. We plan to update the functionality of this app during the course of the tutorial series i.e. by allowing you to add additional JavaScript and CSS files. 
 
+Now we're all set, let's make some more widgets!
 
 ## C3 data update pattern
 
@@ -284,7 +285,7 @@ To be more specific, when C3 loads a new data set via the `load` method, it will
 Assume we have the following data: `{key1 = 10, key2 = 25}`, and in a next step we want to use: `{key1 = 20, key3 = 30}`. Notice that in the new data key2 is *not* present. Without unloading, loading the new data set will result in the data `{key1 = 20, key2 = 25, key3 = 30}`. In this case C3 updates the data for key1, left the data for key2 unchanged, and added data for key3. In order to make the correct update, we have to remove the data for key2, which we can do via an `unload` statement (see below).
 
 
-## C3 pie chart widget
+## C3 pie chart
 
 With the gauge chart fully handled, let's create a C3 based pie chart with animated transitions! Just like in our [first tutorial](http://shiny.rstudio.com/tutorial/js-lesson1/), let's first take a look at the HTML and JavaScript code via a JSfiddle.
 
@@ -303,7 +304,7 @@ htmlwidgets::scaffoldWidget("C3Pie", edit = FALSE)
 
 This command creates a C3Pie.js and C3Pie.yaml file in the inst/htmlwidgets folder and a C3Pie.R file in the R folder of your package (see [tutorial 1](http://shiny.rstudio.com/tutorial/js-lesson1/)).
 
-The R part of our code looks like this
+The R part of our code looks like this:
 
 ```R
 C3Pie <- function(values, legendPosition = "bottom", width = NULL, height = NULL) {
@@ -326,10 +327,18 @@ C3Pie <- function(values, legendPosition = "bottom", width = NULL, height = NULL
 
 ```
 
-Note that we added two arguments i.e. `values`, which contains the individual pie values and `legendPosition`, which takes as values 'bottom', 'right', and 'inset' (see [here](http://c3js.org/reference.html#legend-position)). As before, any data is passed by the variable `x`.
+Note that we added two arguments i.e. `values`, which contains the individual pie values and `legendPosition`, which takes as values 'bottom', 'right', and 'inset' (see [here](http://c3js.org/reference.html#legend-position)).
 
 
-In JavaScript, we can subsequently access these variables via `x.value` and `x.legendPosition`, respectively. In the R code above, `values` is a list object. For instance, we can specify the pie data as `list('data1'=30,'data2'=120)`. 
+As before, in the R part any data is passed by the variable `x`, which is a list. Subsequently, shiny will tacitly pass this object via the R package [jsonlite](https://cran.r-project.org/web/packages/jsonlite/vignettes/json-aaquickstart.html), to JavaScript. Remember, after this step we are talking about a JavaScript object, which is very different to the R object you started with. As noted before, this step is one of the harderst (and often most confusing) steps in creating htmlwidgets.
+
+
+<p style = "margin:25px">
+  <a href = "https://cran.r-project.org/web/packages/jsonlite/vignettes/json-aaquickstart.html" target = "_blank"><img src = "jsonlite.svg" width="100%"></img></a>
+  <div style = "text-align:center">all objects that are send from R to JavaScript, or from JavaScript to R, are tacitly passed and processed by shiny via jsonlite</div>  
+</p>
+
+Back to our widget, in JavaScript, we can subsequently access the two variables from above via `x.value` and `x.legendPosition`, respectively. In the R code above, `values` is a list object. For instance, we can specify the pie data as `list('data1'=30,'data2'=120)`. 
 
 
 As noted in the [tutorial 1](http://shiny.rstudio.com/tutorial/js-lesson1/#step-3), it is worthwhile to experiment with [jsonlite](https://cran.r-project.org/web/packages/jsonlite/vignettes/json-aaquickstart.html) to see how R structures are converted from R to JavaScript. 
@@ -409,10 +418,9 @@ Luckily, in JavaScript there are many tool-belt helper libraries that offer many
   var diff     = _.difference(old_keys,new_keys);
 ```        
         
-For the remaining two charts (discussed below) we use the same concept. The objects we put in `_.keys` are slightly different though. 
-
 Notice that all the function in underscore start with a `_`, hence the name. Even though a complete understanding of the last code snipped is not necessary, we highly recommend you check out what underscore can do, as being able to work with JavaScript objects and arrays is really helpful in building widgets! 
 
+For the remaining two charts (discussed below) we use the same concept. The objects we put in `_.keys` are slightly different though. 
 
 Finally, the YAML file for our pie widget looks like this:
 
@@ -453,7 +461,7 @@ In this segment we combine a bar chart with a set of line charts. In addition, w
 <iframe width='100%' height='400' src='https://fiddle.jshell.net/FrissAnalytics/hu5j1yan/embedded/result,js,html' allowfullscreen='allowfullscreen' frameborder='0'></iframe>
 
 
-Looking at the fiddle you can see we have a lot more options to deal with. To keep things simple, we're not going parameterize all of them. In the widget below, the user provides a single dataframe called `dataset`, with a time column (used for the x-axis) and a set of additional columns (used as y-values) for the bar and line series. Furthermore, the user must specify the a `colors` variable that holds the display colors for the bar and line charts. 
+Looking at the fiddle you can see we have a lot more options to deal with. To keep things simple, we're not going parameterize all of them. In the widget below, the user provides a single dataframe called `dataset`, with a time column (used for the x-axis) and a set of additional columns (used as y-values) for the bar and line series. Furthermore, the user must specify a `colors` variable that holds the display colors for the bar and line charts. 
 
 
 Here's the complete R code for our C3LineBarChart widget:
@@ -600,7 +608,7 @@ As you can see this code is a bit more involved. However, mostly we are only spe
 The concept of rendering this chart is the same as for the pie chart. We make sure we hand the data to JavaScript in the correct format, we initialize a chart with an empty array, compute any differences in keys relevant to unloading specific series and subsequently load and unload data.  
 
 
-In order to improve your knowledge and practical experience of creating and setting options for C3 charts you can use our [widget builder app app](https://js-tutorial.shinyapps.io/WidgetFiddle/) and see what specific code changes will do! In doing this it's probably best to keep a separate tab open with the [C3 reference](http://c3js.org/reference.html).
+In order to improve your knowledge and practical experience of creating and setting options for C3 charts you can use our [htmlwidgets fiddle app](https://js-tutorial.shinyapps.io/WidgetFiddle/) and see what specific code changes will do! In doing this it's probably best to keep a separate tab open with the [C3 reference](http://c3js.org/reference.html).
 
 Of note, in a later part of the tutorial series we will use the sub-chart we created here for to pick up brush events and to send information back to shiny so we can create a brush-able time based filter. 
 
@@ -619,7 +627,7 @@ C3LineBarChart(dataset = dataset,colors=colors)
 ```
 
 
-## C3 stacked area chart widget
+## C3 stacked area chart
 
 Our last chart is very similar to the combination chart above. Here we create a C3 [stacked area chart](http://c3js.org/samples/chart_area_stacked.html). As all the concepts for this widget are repetitions from the previous charts we keep the description of this widget brief. Here's a fiddle showing how to code a C3 stacked area chart:
 
