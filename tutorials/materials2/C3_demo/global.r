@@ -5,7 +5,7 @@ library(htmlwidgets)
 library(C3)
 
 FrissHeader <- list(
-  tags$a(href = "https://shiny.frissplatform.eu/friss/#apps",
+  tags$a(href = "http://friss.eu/en",
          tags$img(src="friss.svg", id = "FrissLogo")
   ),
   singleton(includeCSS("www/friss.css")),

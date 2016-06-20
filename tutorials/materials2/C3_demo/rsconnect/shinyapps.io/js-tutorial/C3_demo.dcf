@@ -2,8 +2,8 @@ name: C3_demo
 account: js-tutorial
 server: shinyapps.io
 appId: 108994
-bundleId: 482401
+bundleId: 484439
 url: https://js-tutorial.shinyapps.io/C3_demo/
-when: 1466114932.18627
+when: 1466427143.87841
 asMultiple: FALSE
 asStatic: FALSE
