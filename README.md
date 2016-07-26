@@ -8,7 +8,7 @@ In order to master the techniques of extending shiny through these frameworks we
 
 The tutorials are a work in progress.
 
-At present, [tutorial 1](http://shiny.rstudio.com/tutorial/js-lesson1/) and [tutorial 2](http://shiny.rstudio.com/tutorial/js-lesson2/) is available at the RSTUDIO website. Additional lessons will be made available in the coming weeks/months. An outline of the complete set of lessons is as follows:
+At present, [tutorial 1](http://shiny.rstudio.com/tutorial/js-lesson1/) and [tutorial 2](http://shiny.rstudio.com/tutorial/js-lesson2/) are available at the RSTUDIO website. Additional lessons will be made available in the coming weeks/months. An outline of the complete set of lessons is as follows:
 
 
 **tutorial 1**: In this tutorial we'll build our first htmlwidget, based on [c3.js](http://c3js.org/), a popular chart library build on [d3.js](https://d3js.org/). In addition, we'll take a deeper look in the tasks related to HTML, CSS and JavaScript a widget has to perform such that we can render JavaScript based interactive charts from R. Here we only create a single gauge chart, with limited functionality.
