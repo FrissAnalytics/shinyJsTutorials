@@ -22,6 +22,7 @@ HTMLWidgets.widget({
                 data: {
                     json: x,
                     type: 'gauge',
+                    onclick:  function (d, element) { Shiny.onInputChange(el.id,d)}
                 },
                 gauge: {
                     label:{

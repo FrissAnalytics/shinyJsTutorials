@@ -21,7 +21,8 @@ HTMLWidgets.widget({
                 bindto: el,
                 data: {
                     json : [],
-                    type : 'pie'
+                    type : 'pie',
+                    onclick:  function (d, element) { Shiny.onInputChange(el.id,d)}
                 },
             legend: {
                 position: x.legendPosition

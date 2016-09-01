@@ -33,7 +33,6 @@ HTMLWidgets.widget({
           			  // use the remaining data for y-values
           				value: keys,
           			},
-
           			// set chart types
           			types: {
 
@@ -43,8 +42,8 @@ HTMLWidgets.widget({
           			axes: {
           			  // extra y-axis
           				Total: 'y2'
-          			}
-          		},
+          			},
+        		  },
           		axis: {
           			x: {
           			  //  x axis as timeseries
