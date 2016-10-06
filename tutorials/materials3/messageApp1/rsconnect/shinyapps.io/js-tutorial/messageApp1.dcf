@@ -1,0 +1,9 @@
+name: messageApp1
+account: js-tutorial
+server: shinyapps.io
+appId: 107462
+bundleId: 475452
+url: https://js-tutorial.shinyapps.io/messageApp1/
+when: 1465387465.6668
+asMultiple: FALSE
+asStatic: FALSE

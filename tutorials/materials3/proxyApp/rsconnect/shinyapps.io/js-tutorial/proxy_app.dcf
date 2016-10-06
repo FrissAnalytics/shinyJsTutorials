@@ -1,0 +1,9 @@
+name: proxy_app
+account: js-tutorial
+server: shinyapps.io
+appId: 129775
+bundleId: 578411
+url: https://js-tutorial.shinyapps.io/proxy_app/
+when: 1475752137.95942
+asMultiple: FALSE
+asStatic: FALSE
