@@ -1,0 +1,8 @@
+"step","intro","element","position","tab"
+"1","This is a generic welcome message, press the buttons below the navigate through the elements of this page.",NA,"auto","1"
+"2","If you use Crome, you can control this application using voice commands, saying help will start the help tour and saying main or time will switch to the respective pages.
+Furthermore it is possible to navigate within the help by saying 'next','back' or 'skip'",NA,"auto","1"
+"3","This help page shows content for a specific element. Specific elements are targeted in the help.csv file by using a css selector in the third column.","#Gauge1","auto","1"
+"4","Using the selector and step columns in the help.csv file we can create a tour over all elements of the page","#PieLabel","auto","1"
+"5","For instance, here is the help text for the line bar chart","#lineBarChart","auto","2"
+"6","and here is the same but then for the stacked area chart","#stackedAreaChart","auto","2"

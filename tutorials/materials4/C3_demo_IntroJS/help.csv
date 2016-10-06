@@ -1,0 +1,5 @@
+"step","intro","element","position"
+"1","This is a generic welcome message, press the buttons below the navigate trough the elements of this page",NA,"auto"
+"2","This help page shows content for a specific element. Specific elements are targeted in the help.csv file by using a css selector in the third column.","#Gauge1","auto"
+"3","Using the selector and step columns in the help.csv file we can create a tour over all elements of the page","#PieLabel","auto"
+"4","You can also use html to <b>mark up</b> the <i>text</i> thats displayed in the help.","#lineBarChart","auto"

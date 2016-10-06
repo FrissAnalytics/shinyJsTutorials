@@ -1,0 +1,10 @@
+Package: FrissIntroJSBasic
+Type: Package
+Title: A binding to use IntroJS from R Shiny
+Version: 0.4
+Date: 2015-08-24
+Author: Erwin Schuijtvlot
+Maintainer: Erwin Schuijtvlot <erwin.schuijtvlot@friss.eu>
+Description: This package contains a function to set all includes in ui and a function to call from server to start an introJS intro
+License: -
+LazyData: -

@@ -1,0 +1,23 @@
+button{
+  width: 100px;
+}
+
+.row{
+  margin:25px;
+}
+
+.well{
+  text-align: center;
+  font-size:150%;
+}
+
+.flexcontainer {
+  display: -webkit-flex;
+  display: flex;
+  -webkit-flex-direction: row;
+  flex-direction: row;
+  -webkit-align-items: center;
+  align-items: center;
+  -webkit-justify-content: center;
+  justify-content: center;
+}
