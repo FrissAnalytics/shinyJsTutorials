@@ -151,7 +151,7 @@ If you run the app, the code can be seen next to the logo. Under the www tab you
 The complete code for this example app can be downloaded [here](https://github.com/FrissAnalytics/shinyJsTutorials/tree/master/tutorials/materials3/messageApp2).
 
 
-The example itself is slightly more complex then what we previously encountered and involves a number of techniques. However, a complete understanding will help you handle various things that can come up when you create more complex Shiny apps. Assuming you opened the app, here are a few things to notice:
+The example itself is slightly more complex than what we previously encountered and involves a number of techniques. However, a complete understanding will help you handle various things that can come up when you create more complex Shiny apps. Assuming you opened the app, here are a few things to notice:
  
  
   1) the ui.r file contains a link to a [css](http://www.w3schools.com/html/html_css.asp) file used to style the logo, to align the text under the image, and to change the mouse pointer on hover. 
@@ -168,7 +168,7 @@ For C3, you don't have to create your own event listeners. However, it is very v
 
 ### Data transformation from R to JavaScript and back
 
-As noted in the [previous](http://shiny.rstudio.com/tutorial/js-lesson2/) tutorial, all objects that are sent from R to JavaScript, or from JavaScript to R, are tacitly passed and processed by Shiny via [jsonlite](https://cran.r-project.org/web/packages/jsonlite/vignettes/json-aaquickstart.html), using the functions `toJSON` and `fromJSON`. These functions transform R objects into JavaScript objects and vice versa. Especially in the beginning, this may lead to unexpected results, as the transformations are tacit and the returned objects may look different after processing then you might expect. With the hazard of sounding like a broken record: it's very well worth your time to investigate how objects are transformed!
+As noted in the [previous](http://shiny.rstudio.com/tutorial/js-lesson2/) tutorial, all objects that are sent from R to JavaScript, or from JavaScript to R, are tacitly passed and processed by Shiny via [jsonlite](https://cran.r-project.org/web/packages/jsonlite/vignettes/json-aaquickstart.html), using the functions `toJSON` and `fromJSON`. These functions transform R objects into JavaScript objects and vice versa. Especially in the beginning, this may lead to unexpected results, as the transformations are tacit and the returned objects may look different after processing than you might expect. With the hazard of sounding like a broken record: it's very well worth your time to investigate how objects are transformed!
 
 
 <p style = "margin:25px">
