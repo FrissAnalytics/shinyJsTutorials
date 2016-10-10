@@ -8,14 +8,13 @@ In order to master the techniques of extending shiny through these frameworks we
 
 The tutorials are a work in progress.
 
-At present, [tutorial 1](http://shiny.rstudio.com/tutorial/js-lesson1/) and [tutorial 2](http://shiny.rstudio.com/tutorial/js-lesson2/) are available at the RSTUDIO website. Additional lessons will be made available in the coming weeks/months. An outline of the complete set of lessons is as follows:
+At present, tutorials [1](http://shiny.rstudio.com/tutorial/js-lesson1/), [2](http://shiny.rstudio.com/tutorial/js-lesson2/) and  [3](http://shiny.rstudio.com/tutorial/js-lesson3/) are available at the RSTUDIO website. Materials for tutorial 4 are currently in proofreading and are expected to be published somewhere this week. The final two tutorials are expected to be completed before the end of October. An outline of the complete set of lessons is as follows:
 
+**[tutorial 1](http://shiny.rstudio.com/tutorial/js-lesson1/)**: In this tutorial we'll build our first htmlwidget, based on [c3.js](http://c3js.org/), a popular chart library build on [d3.js](https://d3js.org/). In addition, we'll take a deeper look in the tasks related to HTML, CSS and JavaScript a widget has to perform such that we can render JavaScript based interactive charts from R. Here we only create a single gauge chart, with limited functionality.
 
-**tutorial 1**: In this tutorial we'll build our first htmlwidget, based on [c3.js](http://c3js.org/), a popular chart library build on [d3.js](https://d3js.org/). In addition, we'll take a deeper look in the tasks related to HTML, CSS and JavaScript a widget has to perform such that we can render JavaScript based interactive charts from R. Here we only create a single gauge chart, with limited functionality.
+**[tutorial 2](http://shiny.rstudio.com/tutorial/js-lesson2/)**: In this tutorial we expand the functionality of the gauge widget and elaborate on related JavaScript concepts such as closures, events, objects and methods. In addition, we’ll create widgets for a c3 pie chart, line bar chart and stacked area chart;
 
-**tutorial 2**: In this tutorial we expand the functionality of the gauge widget and elaborate on related JavaScript concepts such as closures, events, objects and methods. In addition, we’ll create widgets for a c3 pie chart, line bar chart and stacked area chart;
-
-**tutorial 3**: In this tutorial we take a closer look at JavaScript events and see how we can send messages from R to JavaScript and back. In addition, we show how you can create proxy objects, via which you can send updates to already existing charts. You'll also learn how to create chainable functions via the pipe (%>%) operator.
+**[tutorial 3](http://shiny.rstudio.com/tutorial/js-lesson3/)**: In this tutorial we take a closer look at JavaScript events and see how we can send messages from R to JavaScript and back. In addition, we show how you can create proxy objects, via which you can send updates to already existing charts. You'll also learn how to create chainable functions via the pipe (%>%) operator.
 
 **tutorial 4**: In this tutorial we'll learn how to develop an interactive, dynamic help system for our dashboard, based on [intro.js](http://introjs.com/). This library allows you to easily create a step-by-step guide for your application. It will draw a nice box around elements of your choice, combined with an annotation layer and a navigation system. 
 
