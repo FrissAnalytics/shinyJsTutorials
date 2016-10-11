@@ -29,14 +29,14 @@ In the previous tutorials, we focused on using JavaScript to create htmlwidgets 
 In this tutorial, we will show you how to use the same functions to create a dynamic interactive help system for Shiny apps, based on the JavaScript library [introJS](http://introjs.com/).
 
 
-Intro.js lets you create a step-by-step guide for a website. It will draw a nice box around elements of your choice, combined with an annotation layer and a navigation system. Click the green button in the example below to see an introJS 'hello-world' example in action. 
+IntroJS lets you create a step-by-step guide for a website. It will draw a nice box around elements of your choice, combined with an annotation layer and a navigation system. Click the green button in the example below to see an introJS 'hello-world' example in action. 
 
 <iframe src = "http://introjs.com/example/hello-world/index.html" width = "100%" height = "600px" frameborder="0" scrolling ="no"></iframe>
   
 
 ## Intro.js basics and jsFiddle
 
-Using introJS in a piece of HTML code is very simple. Let's first set up a jsFiddle example that uses a [bootstrap](http://getbootstrap.com/) grid of 3 rows, with 3 columns each. In addition, let's add a button that you can click to activate introjs. 
+Using introJS in a piece of HTML code is very simple. Let's first set up a jsFiddle example that uses a [bootstrap](http://getbootstrap.com/) grid of 3 rows, with 3 columns each. In addition, let's add a button that you can click to activate introJS. 
 
 
 <iframe width='100%' height='500px' src='https://jsfiddle.net/ok1vzopq/6/embedded/result,html,js,css' allowfullscreen='allowfullscreen' frameborder='0'></iframe>
@@ -48,7 +48,8 @@ We can add introJS to the app in three steps, described in detail [here](https:/
   1) Include [introjs.css](https://raw.githubusercontent.com/usablica/intro.js/master/introjs.css) and [intro.js](https://raw.githubusercontent.com/usablica/intro.js/master/intro.js) with your page. 
   
   
-  2) For each element in the tour, add a `data-intro`, a `data-position`, and an optional `data-step` attribute.<br> 
+  2) For each element in the tour, add a `data-intro`, a `data-position`, and an optional `data-step` attribute.
+  <br><br> 
   These respectively specify the display text, the position of the box displayed by introJS, and the step number of 
   the tour.   
   
@@ -66,9 +67,9 @@ In the HTML tab of our fiddle, we see that the first row is created via:
 
 ```
   
-The classes `row`, `col-sm-4`, and `well` are all bootstrap classes, which define the grid layout. [Bootstrap](http://getbootstrap.com/) is the most popular HTML, CSS, and JavaScript framework for developing responsive, mobile first projects on the web. For some inspiration, see [these](http://www.w3schools.com/bootstrap/bootstrap_grid_examples.asp) examples or [these](http://getbootstrap.com/getting-started/#examples) templates!
+The classes `row`, `col-sm-4`, and `well` are all bootstrap classes, which define the grid layout. [Bootstrap](http://getbootstrap.com/) is the most popular HTML, CSS, and JavaScript framework for developing responsive, mobile first projects on the web. For some inspiration, see [these](http://www.w3schools.com/bootstrap/bootstrap_grid_examples.asp) examples. For more complete use cases, see [these](http://getbootstrap.com/getting-started/#examples) templates. 
 
-Many layout functions in Shiny are directly based on bootstrap. For instance, the code snippet:
+Of note, many layout functions in Shiny are directly based on bootstrap. For instance, in a Shiny context the R code snippet:
 
 ```
 fluidRow(
@@ -78,9 +79,9 @@ fluidRow(
 
 produces an output that resembles row 1 in our example (but without the introJS attributes and well classes).
 
-Coming back to introJS, you can see that it is quite easy to add the `data-step`, `data-intro` and `data-position` attributes from the HTML code in the example above. 
+Coming back to introJS, from the HTML code in the example above we see that it is quite easy to add the `data-step`, `data-intro` and `data-position` attributes. 
 
-Next, in the JavaScript tab of our fiddle, we've attached an event handler to our button using [jQuery](https://jquery.com/) (as described in tutorial 3). We use the event handler to start introJS on a button click, i.e. via the JavaScript code:
+Next, in the JavaScript tab of our fiddle, we've attached an event handler to our button using [jQuery](https://jquery.com/) (see also [tutorial 3](http://shiny.rstudio.com/tutorial/js-lesson3/)). Here we use the event handler to start introJS on a button click, i.e. via the JavaScript code:
 
 ```javascript
 $("button").on("click", function(){
@@ -88,12 +89,14 @@ $("button").on("click", function(){
 })
 ```
 
-In the CSS tab of our jsFiddle, we've set some styling options to center the button and the text in the example. Note here that we use [flexbox](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Flexible_Box_Layout/Using_CSS_flexible_boxes) to center the button. Even though flexbox is by no means a focus point of this tutorial and is 
- a relative new addition to the CSS language, it greatly enhances your abilities to create page layouts via CSS. For a complete guide to flexbox, see [this](https://css-tricks.com/snippets/css/a-guide-to-flexbox/) article by CSS-tricks.
+In the CSS tab of our jsFiddle, we've set some styling options to center the button and the text in the example. In the CSS definitions we use [flexbox](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Flexible_Box_Layout/Using_CSS_flexible_boxes) to center the button. Even though flexbox is by no means a focus point of this tutorial and is 
+ a relative new addition to the CSS language, it greatly enhances your abilities to create page layouts via CSS. For a complete guide to flexbox, see [this](https://css-tricks.com/snippets/css/a-guide-to-flexbox/) article by CSS-tricks!
 
 Finally, you may wonder, where did we included the JavaScript and CSS file from step 1? You can find the links when pressing the <img src = "fiddleButton.png" style = "display: inline; height: 20px"> button, located at the top right in our example fiddle. This opens up a new display with a panel on the left hand side that contains an External Resources tab, which includes all the external dependencies for our jsFiddle, i.e. the introjs CSS and JavaScript files, Bootstrap and jQuery. 
 
-Of note, in a Shiny app you don't need to load either Bootstrap or jQuery as they are included automatically by Shiny.  
+Of note, in a standard Shiny app you don't need to explicitly load either Bootstrap or jQuery as they are included automatically by Shiny. However, if you base your app on [HTML Templates](http://shiny.rstudio.com/articles/templates.html), then be careful you don't mistakenly include multiple jQuery or Bootstrap instances. In case you need to, you can also suppress specific web dependencies via [suppressDependencies](http://shiny.rstudio.com/reference/shiny/latest/suppressDependencies.html). This function can be helpful if distinct widgets include different versions of the same library e.g. different versions of d3.js.
+
+
 
 ### Using JSON to setup introJS
 
@@ -105,7 +108,7 @@ Even though the previous example creates a tour, it's not very convenient to man
 
 <br><br>
 
-The output is identical to the fiddle in the previous section. However, you can see in the HTML tab that we greatly simplified the HTML markup and needed only an id field. Furthermore, you can see in the JavaScript tab that we specified an array that contains objects that describe the individual steps in the tour. The array for the first two steps looks like this:
+The output is identical to the fiddle in the previous section. However, you can see in the HTML tab that we greatly simplified the HTML markup and now only need an id field. Furthermore, in the JavaScript tab you can see that we specified an array that contains objects that describe the individual steps in the tour. The array for the first two steps looks like this:
 
 ``` javascript
 var Steps = [
@@ -140,33 +143,26 @@ Note that all of this code is located inside the callback function for our butto
 
 ### Customization and additional methods
 
-Intro.js is a versatile library, which offers many additional functions and options next to those discussed here. For a more comprehensive overview of additional attributes that allow customization, see [here](https://github.com/usablica/intro.js/wiki/Documentation#attributes). 
+IntroJS is a versatile library, which offers many additional functions and options next to those discussed here. For a more comprehensive overview of additional attributes that allow customization, see [here](https://github.com/usablica/intro.js/wiki/Documentation#attributes). 
 
 
-In addition, introJS offers a rich set of methods such as: 
-
-  `introJs.nextStep()`, 
-  `introJs.previousStep()` and
-  `introJs.exit()`.
+In addition, introJS offers a rich set of methods such as: `introJs.nextStep()`, `introJs.previousStep()` and `introJs.exit()`.
   
-These methods allow you to control the direction of the guided tour. For many of these methods, introJS let's you call a JavaScript function, before, during or after completion, e.g. via:   
-
-  `introJs.onchange`, 
-  `introJs.oncomplete`  and 
-  `introJs.onexit`. 
+These methods allow you to control the direction of the guided tour. For many of these methods, introJS let's you call a JavaScript function, before, during or after completion, e.g. via: `introJs.onchange`, `introJs.oncomplete`  and `introJs.onexit`. 
   
+
 A complete list of methods is provided [here](https://github.com/usablica/intro.js/wiki/Documentation). 
 
 
-Caveat: for some functionality in more recent versions of introjs ($\geq$ 2), an (inexpensive) licence is required for commercial applications (all functionality in this tutorial work with earlier versions though).
+Caveat: for some functionality in more recent versions of introJS ($\geq$ 2), an inexpensive licence is required for commercial applications. All functionality in this tutorial work with earlier versions though.
 
 
 ## Using introJS in a Shiny app
 
-Now that we have a better grasp on what introJS offers, let's see how we can use introJS in a Shiny context. 
+Now that we have a better grasp on what introJS offers, let's see how we can use introJS in a Shiny context. The idea is quite simple.
 
 
-The idea is quite simple. From the previous tutorial, we know that we can call a JavaScript function from R by using `session$sendCustomMessage` to send a message to an event handler in JavaScript that calls the function via `Shiny.addCustomMessageHandler`. Furthermore, we can use `Shiny.onInputChange` inside a JavaScript function to send a message back to the Shiny input object (for whatever reason, e.g. we clicked on a box). 
+From the previous tutorial, we know that we can call any JavaScript function from R by using `session$sendCustomMessage`, which sends a message to an event handler, which we can create via `Shiny.addCustomMessageHandler`. Furthermore, we can use `Shiny.onInputChange` inside a JavaScript function to send a message back to the Shiny `input` object, e.g. when we click on a box. 
 
 
 Now that we know which JavaScript functions to call and what our data should look like, we can setup Shiny to make these calls.
@@ -178,7 +174,7 @@ A live version of the end result of a first basic Shiny implementation can be fo
 
 
 <a href = "https://js-tutorial.shinyapps.io/BasicDemoIntroJS/" target="_blank" >
-  <img src = "BasicIntoJSDemoApp.png">
+  <img src = "BasicIntroJSDemoApp.png">
 </a>
 <div style = "text-align: center; margin-bottom: 25px">Click the image to see a live shiny app!</div>
 
@@ -193,52 +189,52 @@ When you're building new Shiny functionality, it is often useful to first build 
 * how to structure your data 
 * how to call specific library functions 
 
-Essentially, this is the role that our jsFiddle examples fill in our tutorials. After you're comfortable that your mini application works the way you want, the sole trick is to let Shiny include the files you need, and to use Shiny to build the HTML elements you need. After that, just let Shiny call whatever JavaScript function(s) you need to call and pass any data via jsonlite (Shiny will implicitly do this for you, see the previous tutorials).
+Essentially, this is the role that our jsFiddle examples fill in our tutorials. After you're comfortable that your mini application works the way you want, the sole trick is to let Shiny include the files you need, and to use Shiny to build the HTML elements you need. After that, just let Shiny call whatever JavaScript function(s) you need to call and pass any data via jsonlite (Shiny will implicitly do this for you, see [here](http://shiny.rstudio.com/tutorial/js-lesson3/#data-transformation-from-r-to-javascript-and-back)).
 
 
 In the case at hand, to go from the fiddle shown above, to a Shiny app, we have to implement the following steps:
   
   1) Make Shiny include the correct CSS and JavaScript files
   2) Let Shiny spit out the HTML you need
-  3) In R, send a custom message to the client (i.e. JavaScript), with the data we need intoJS to have
-  4) In JavaScript, setup a custom message handler that can call intoJS and pass it the data it needs 
+  3) In R, send a custom message to the client i.e. JavaScript, with the data we need introJS to have
+  4) In JavaScript, setup a custom message handler that can call introJS and pass it the data it needs 
 
 ### Creating the UI code
 
-Coming back to our jsFiddle, note that many layout functions rely on bootstrap classes. In fact, in Shiny, the `fluidRow` and `column` functions create divs with a `row` and `col-sm-x` class, respectively. Thus the Shiny functions almost provide the HTML output of our first intoJS fiddle example. We only need to add a an extra div to each column to make it right.
+Coming back to our jsFiddle, note that many layout functions rely on bootstrap classes. In fact, in Shiny, the `fluidRow` and `column` functions create divs with a `row` and `col-sm-x` class, respectively. Hence, these functions almost provide the HTML output of our first introJS fiddle example. We only need to add an extra div to each column to make it right.
 
 First, we start by copying the CSS we defined in the fiddle into a separate file, i.e. `app.css`, such that we can use the custom `well` and `flexcontainer` classes.
 
-The ui.R code snippet below shows how to get the first row of elements, including the start button, as well as how to load all of the dependencies that we need. We also include a file called `app.js`, which will contain all of the client side code that we need to update the help contents and start the help (see below).
+The ui.R code snippet below shows how to get the first row of elements, including the start button, as well as how to load all of the dependencies that we need. We also include a file called `app.js`, which contains all of the client side code that we need to update the help contents and start the help (see below).
 
 ```R
-   # Include IntroJS styling
-   includeCSS("introjs.min.css"),
-   
-   # Include styling for the app
-   includeCSS("app.css"),
-   
-   # Include IntroJS library
-   includeScript("intro.min.js"),
-   
-   # Include JavaScript code to make shiny communicate with introJS
-   includeScript("app.js")
-   
-   # setup grid
-   # row 1
-   fluidRow(
-     column(4, div(id="step1", class="well", "element1")),
-     column(4, div(id="step2", class="well", "element2")),
-     column(4, div(id="step3", class="well", "element3"))
-   ),
-   ...
-   
-   # centered button
-   div(class="flexcontainer", 
-       
-       # action button
-       actionButton(inputId="startHelp", label="start", class="btn-success")
-   )
+# Include IntroJS styling
+includeCSS("introjs.min.css"),
+
+# Include styling for the app
+includeCSS("app.css"),
+
+# Include IntroJS library
+includeScript("intro.min.js"),
+
+# Include JavaScript code to make shiny communicate with introJS
+includeScript("app.js")
+
+# setup grid
+# row 1
+fluidRow(
+  column(4, div(id="step1", class="well", "element1")),
+  column(4, div(id="step2", class="well", "element2")),
+  column(4, div(id="step3", class="well", "element3"))
+),
+...
+
+# centered button
+div(class="flexcontainer", 
+    
+    # action button
+    actionButton(inputId="startHelp", label="start", class="btn-success")
+)
 ```
 
 ### Send help contents from the server to the client
@@ -246,7 +242,10 @@ The ui.R code snippet below shows how to get the first row of elements, includin
 Next, let's see what we should put in `app.js`. 
 
 
-The first thing we need to do is to initiate introJS. We can do this exactly like in our fiddle. Next, instead of setting the help contents in JavaScript, we want to be able to set the help contents dynamically from Shiny. As mentioned above, we can use the JavaScript method `Shiny.addCustomMessageHandler` to create a custom messsage handler that we can invoke from R. In our case, the handler must be able to receive tour data in the same format as described in the fiddle above and to pass this data to the introJS object `intro`. 
+The first thing we need to do is to initiate introJS. We can do this exactly like in our fiddle i.e. via `var intro = introJs();`. Next, instead of setting the help contents in JavaScript, we want to be able to set the help contents dynamically from Shiny. 
+
+
+As mentioned above, we can use the JavaScript method `Shiny.addCustomMessageHandler` to create a custom message handler that we can invoke from R. In our case, the handler must be able to receive tour data in the same format as described in the fiddle above and to pass this data to the introJS object `intro`. 
 
 Putting these steps together results in the following JavaScript code:
 ```javascript
@@ -268,7 +267,10 @@ Shiny.addCustomMessageHandler("setHelpContent",
 
 Our handler is called `setHelpContent`, which is the name we'll use when sending information from R via `session$sendCustomMessage` (see below).
 
-To conveniently configure our help system, we can put the help contents into a comma separated configuration file, e.g.`help.csv`. In our case, `help.csv` looks like this: 
+To conveniently configure our help system, we can put the help contents into a comma separated configuration file, e.g.`help.csv`. 
+
+
+In our case, `help.csv` looks like this: 
 
 ``` {r echo=FALSE}
 helpData <- read.csv("help.csv")
@@ -283,13 +285,13 @@ From left to right, the columns respectively indicate: the step number, the disp
 Once we have our dataframe ready to go (here called `steps`), we can send it to introJS via: 
 
 ```R
-  # set help content
-  session$sendCustomMessage(type = 'setHelpContent', message = list(steps = toJSON(steps) ))
+# set help content
+session$sendCustomMessage(type = 'setHelpContent', message = list(steps = toJSON(steps) ))
 ```
 
 Essentially, you can use one of three basic strategies to send information that introJS needs from R to JavaScript:
 
-1. Send the information from R in a convient R structure. Then further modify the object in JavaScript to create the object JavaScript needs. 
+1. Send the information from R in a convenient R structure. Then further modify the object in JavaScript to create the object JavaScript needs. 
 2. Reshape the information in R so that when Shiny passes it as jsonlite (see tutorial 2 & 3), it ends up as the precise object that JavaScript needs. 
 3. A combination of strategies 2 and 3. 
 
@@ -303,10 +305,7 @@ All that remains is to create a mechanism to start the help from the server. As 
 
 ``` javascript
 // handler 2
-Shiny.addCustomMessageHandler("startHelp",
-  
-  // callback function
-  function(message) {
+Shiny.addCustomMessageHandler("startHelp", function(message) {
 
     // start intro.js
     // note: we don't need information from shiny, just start introJS
@@ -315,9 +314,9 @@ Shiny.addCustomMessageHandler("startHelp",
 );
 ```
 
-Note that we could also directly add an onClick to our button like we did in the examples above. An advantage of the approach we choose here is that we have more control over our help because we can now invoke it from the server.
+Note that we could also directly add an [onClick](http://www.w3schools.com/jsref/event_onclick.asp) attribute to our button like we did in the examples above. An advantage of the approach taken here is that we have more control over our help because we can now invoke it from the server i.e. Shiny.
 
-To invoke the help from the server, we add an `observeEvent` block in R. The block listens to our button and calls `sendCustomMessage` to invoke our `startHelp` handler as defined above. 
+To invoke the help from the server, we add an `observeEvent` block in R. This block listens to our button and calls `sendCustomMessage` to invoke our `startHelp` handler as defined above: 
 
 ```R
 # listen to the action button
@@ -333,7 +332,7 @@ observeEvent(input$startHelp,{
 Below we present a Shiny demo app that contains a compete implementation of the various aspects discussed above. For convenience, we made the code available as an R package.
 
 
-We won't cover the complete code base in detail as this involves various aspects related to package building like using [addResourcePath](http://shiny.rstudio.com/reference/shiny/latest/addResourcePath.html) to include dependencies, which is outside the scope of this tutorial. The complete code for this example app can be downloaded [here](https://github.com/FrissAnalytics/shinyJsTutorials/tree/master/tutorials/materials4/C3_demo_IntroJS), while the accompanying R package can be downloaded [here](https://github.com/FrissAnalytics/shinyJsTutorials/tree/master/tutorials/materials4/FrissIntroJSBasic). 
+We won't cover the complete code base in detail as this involves various aspects related to package building e.g. using [addResourcePath](http://shiny.rstudio.com/reference/shiny/latest/addResourcePath.html) to include dependencies, which is outside the scope of this tutorial. The complete code for this example app can be downloaded [here](https://github.com/FrissAnalytics/shinyJsTutorials/tree/master/tutorials/materials4/C3_demo_IntroJS), while the accompanying R package can be downloaded [here](https://github.com/FrissAnalytics/shinyJsTutorials/tree/master/tutorials/materials4/FrissIntroJSBasic). 
 
 In short, the R library lets you:
 
@@ -353,7 +352,7 @@ To see the package in action, press the screenshot below!
 
 In the remainder of this tutorial, we describe how you can use our introJS R package in a real Shiny app. This is illustrated in an extended version of the dashboard app that we showed in the previous tutorials. 
 
-### Using the package in a Shiny app
+### Using the introJS package in a Shiny app
 
 
 With the help of our [introJS package](https://github.com/FrissAnalytics/shinyJsTutorials/tree/master/tutorials/materials4/FrissIntroJSBasic), using introJS in a Shiny application is a breeze! Only the following 3 simple steps are needed:
@@ -380,7 +379,7 @@ That's it! The package will handle:
 * passing the data to introJS, and 
 * activating introJS.  
   
-In the example app, we created the dataframe by reading in a pre-defined CVS file whose contents look like this: 
+In the example app, we created a dataframe similar to the one discussed above by reading in a predefined CVS file whose contents look like this: 
 
 ``` {r echo=FALSE}
 library(DT)
@@ -390,33 +389,31 @@ helpData <- read.csv("help.csv")
 DT::datatable(helpData,rownames = FALSE, options = list(dom = 't'))
 ```
 
-<br><br>
-
-From left to right, the columns respectively indicate: the step number, the display text for that step, the CSS selector and the position we want the text box to appear in. The value for the latter option can be either `top`, `left`, `right`, `bottom`, `bottom-left-aligned`, `bottom-middle-aligned`, `bottom-right-aligned` or `auto`. If left empty, the default option equals `bottom`. 
-
 
 #### Implemenation details
 
 Briefly, the package implementation contains an R file, called `FRISSIntroJS.R`, which contains the `addIntroJS` and `initIntroJS` functions, as well as a JavaScript file, called `IntroJSBinding.js`, which is located in the package `www` folder. The latter file contains the JavaScript logic for the introJS component. Please feel free to inspect the annotated source code to familiarize yourself with the various aspects of package building. 
 
-Obviously, many different implementations of introJS are possible, so don't be too worried if you don't understand all of the aspects of this code base or feel another way of implementing some features is more appropriate. Our package is by no means a full fledged implementation and only serves to illustrate alternative uses of the key JavaScript functions discussed above.
+Obviously, many different implementations of introJS are possible, so don't be too worried if you don't understand all of the aspects of this code base or feel another way of implementing some features is more appropriate. Furthermore, our package is by no means a full fledged implementation and only serves to illustrate alternative uses of the key JavaScript functions discussed above.
 
 
 ## Advanced example
 
-As a bonus, we present a completely tricked out example, that allows you to use introJS, switch tab panels in a Shiny app via introJS, use voice recognition to activate introJS, and dynamically update the content inside an introJS message box. The app uses voice synthesis to speak out the text inside each box! 
-
-Caveat 1: most parts of this code only work in Chrome. Furthermore, a discussion of this code base is well beyond the scope of this tutorial. However, it serves as a nice illustration to see what's possible when combining JavaScript with Shiny code! Here speech recognition is based on [annyang](https://www.talater.com/annyang/).
+As a bonus, we present a completely tricked out toy example app, that allows you to use introJS, switch tab panels in a Shiny app via introJS, use voice recognition to activate introJS, and dynamically update the content inside an introJS message box. The app even uses voice synthesis to speak out the text inside each box! A full discussion of this code base is well beyond the scope of this tutorial. However, it serves as a nice illustration to see what's possible when combining JavaScript with Shiny code! Here speech recognition is based on [annyang](https://www.talater.com/annyang/).
 
 
-Caveat 2: the current voice recognition capabilities of Chrome are rather limited and often buggy, which unfortunately leaves true production applications likely out of scope. 
+Caveat 1: most parts of this code only work in recent versions of the [Chrome](https://www.google.com/chrome/browser/desktop/) browser. 
 
-To see this demo in action, navigate Chrome to [this](https://js-tutorial.shinyapps.io/C3_demo_IntroJSAdvanced/) link. You can download the complete code base [here](https://github.com/FrissAnalytics/shinyJsTutorials/tree/master/tutorials/materials4/C3_demo_IntroJSAdvanced).
+
+Caveat 2: the current voice recognition capabilities of Chrome are rather limited and often buggy, which likely leave production applications out of scope based on our approach. 
+
+
+To see this demo in action, navigate a recent version of the Chrome browser to [this](https://js-tutorial.shinyapps.io/C3_demo_IntroJSAdvanced/) link. You can download the complete code base [here](https://github.com/FrissAnalytics/shinyJsTutorials/tree/master/tutorials/materials4/C3_demo_IntroJSAdvanced).
 
 
 <p style = "margin:25px">
   <a href = "https://js-tutorial.shinyapps.io/C3_demo_IntroJSBasic/" target = "_blank"><img src = "C3IntroJSAdvancedDemoApp.png" width="100%"></img></a>
-  <div style = "text-align:center">Shiny C3 dashboard app advanced example, with tab switching via intoJS, using voice recognition and voice synthesis.</div>  
+  <div style = "text-align:center">Shiny C3 dashboard app advanced example, with tab switching via introJS, using voice recognition and voice synthesis.</div>  
 </p>
 
 <br>
