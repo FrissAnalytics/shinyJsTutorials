@@ -8,7 +8,7 @@ In order to master the techniques of extending shiny through these frameworks we
 
 The tutorials are a work in progress.
 
-At present, tutorials [1](http://shiny.rstudio.com/tutorial/js-lesson1/), [2](http://shiny.rstudio.com/tutorial/js-lesson2/) and  [3](http://shiny.rstudio.com/tutorial/js-lesson3/) are available at the RSTUDIO website. Materials for tutorial 4 are currently in proofreading and are expected to be published somewhere this week. The final two tutorials are expected to be completed before the end of October. An outline of the complete set of lessons is as follows:
+At present, tutorials [1](http://shiny.rstudio.com/tutorial/js-lesson1/), [2](http://shiny.rstudio.com/tutorial/js-lesson2/), [3](http://shiny.rstudio.com/tutorial/js-lesson3/) and [4](http://shiny.rstudio.com/tutorial/js-lesson4/) are available at the RSTUDIO website. The final two tutorials are expected to be completed before the end of December. An outline of the complete set of lessons is as follows:
 
 **[tutorial 1](http://shiny.rstudio.com/tutorial/js-lesson1/)**: In this tutorial we'll build our first htmlwidget, based on [c3.js](http://c3js.org/), a popular chart library build on [d3.js](https://d3js.org/). In addition, we'll take a deeper look in the tasks related to HTML, CSS and JavaScript a widget has to perform such that we can render JavaScript based interactive charts from R. Here we only create a single gauge chart, with limited functionality.
 
@@ -16,7 +16,7 @@ At present, tutorials [1](http://shiny.rstudio.com/tutorial/js-lesson1/), [2](ht
 
 **[tutorial 3](http://shiny.rstudio.com/tutorial/js-lesson3/)**: In this tutorial we take a closer look at JavaScript events and see how we can send messages from R to JavaScript and back. In addition, we show how you can create proxy objects, via which you can send updates to already existing charts. You'll also learn how to create chainable functions via the pipe (%>%) operator.
 
-**tutorial 4**: In this tutorial we'll learn how to develop an interactive, dynamic help system for our dashboard, based on [intro.js](http://introjs.com/). This library allows you to easily create a step-by-step guide for your application. It will draw a nice box around elements of your choice, combined with an annotation layer and a navigation system. 
+**[tutorial 4](http://shiny.rstudio.com/tutorial/js-lesson4/)**: In this tutorial we'll learn how to develop an interactive, dynamic help system for our dashboard, based on [intro.js](http://introjs.com/). This library allows you to easily create a step-by-step guide for your application. It will draw a nice box around elements of your choice, combined with an annotation layer and a navigation system. 
 
 **tutorial 5**: In this tutorial we'll learn how to create shiny [input bindings](http://shiny.rstudio.com/articles/building-inputs.html), which capture events from the browser and send them back to shiny. We learn how to create an interactive toggle switch, as well as an interactive button group, which we'll use in a latter tutorial to create a filter system for our dashboard application. 
 
