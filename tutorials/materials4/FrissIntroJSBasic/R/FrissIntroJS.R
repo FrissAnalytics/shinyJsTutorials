@@ -11,7 +11,7 @@ addIntroJS <- function(inputId='btnHelp') {
   # When we use the binding in a package we use the add resource path statement
   addResourcePath(
     prefix = 'wwwIntroJS',
-    directoryPath = system.file('www', package='FrissIntroJS'))
+    directoryPath = system.file('www', package='FrissIntroJSBasic'))
 
   # Add includes to the head of the page using the resource path
   tagList(
