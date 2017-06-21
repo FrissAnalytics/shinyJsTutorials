@@ -128,7 +128,7 @@ We will start with the most simple visualization c3.js offers: a gauge. Before i
 Each stand alone example is presented in a <a href="https://jsfiddle.net//" target="_blank">jsfiddle</a>, which is a webpage where you can interactively run HTML, CSS and JavaScript code. By clicking "Edit in JSFiddle" in the panel below, you can alter the code and see what the effect of your change is. Working with fiddles is a great way to learn how a specific library or piece of code works. For example, by changing the value 75 on the first line of the JavaScript panel and clicking on the "Run" button in the left corner you will see the value of the gauge change.
 
 
-<iframe width='100%' height='350' src='http://jsfiddle.net/FrissAnalytics/01tv8ojm/6/embedded/result,js,html' allowfullscreen='allowfullscreen' frameborder='0'></iframe>
+<iframe width='100%' height='350' src='https://jsfiddle.net/FrissAnalytics/01tv8ojm/6/embedded/result,js,html' allowfullscreen='allowfullscreen' frameborder='0'></iframe>
 
 
 ## Recipe to construct charts
@@ -308,7 +308,7 @@ A desirable aspect of a well designed widget is the possibility to update the da
 In the example below, we see C3.js nicely animates the transition from one value to another. For this to happen, we need to know both the current state of the gauge and the new state we want the gauge to be in. 
 
 
-<iframe width='100%' height='300' src='http://jsfiddle.net/FrissAnalytics/tx38gstp/9/embedded/result,js,html' allowfullscreen='allowfullscreen' frameborder='0'></iframe>
+<iframe width='100%' height='300' src='https://jsfiddle.net/FrissAnalytics/tx38gstp/9/embedded/result,js,html' allowfullscreen='allowfullscreen' frameborder='0'></iframe>
 
 Here's the code for the complete example:
 

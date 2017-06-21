@@ -22,7 +22,7 @@ vignette: >
 In the [previous](http://shiny.rstudio.com/tutorial/js-lesson1/) tutorial, we created a simple [C3](http://c3js.org/) based gauge widget. In this tutorial, we expand the widget to create smooth transitions like those in the [showcase dashboard app](https://js-tutorial.shinyapps.io/dashboardApp/). We also provide code and examples for the other charts types shown in the dashboard: a pie chart, a line + bar chart and a stacked area chart. In this tutorial, we focus on pairing charts and data in such a way that C3 can animate the transition between old and new data.
 
 
-<iframe width='100%' height='300' src='http://jsfiddle.net/FrissAnalytics/tx38gstp/9/embedded/result' allowfullscreen='allowfullscreen' frameborder='0'></iframe>
+<iframe width='100%' height='300' src='https://jsfiddle.net/FrissAnalytics/tx38gstp/9/embedded/result' allowfullscreen='allowfullscreen' frameborder='0'></iframe>
 
 <div style = "text-align:center; margin-bottom:25px" >example of a gauge with animated transitions between old and new data</div>  
 
@@ -290,7 +290,7 @@ Assume we have the following data: `{key1 = 10, key2 = 25}`, and in a next step 
 
 With the gauge chart fully handled, let's create a C3 based pie chart with animated transitions! Just like in our [first tutorial](http://shiny.rstudio.com/tutorial/js-lesson1/), let's first take a look at the HTML and JavaScript code via a JSfiddle.
 
-<iframe width='100%' height='450' style = 'padding-bottom:25px' src='http://jsfiddle.net/FrissAnalytics/umu7Lnrv/12/embedded/result,js,html' allowfullscreen='allowfullscreen' frameborder='0'></iframe>
+<iframe width='100%' height='450' style = 'padding-bottom:25px' src='https://jsfiddle.net/FrissAnalytics/umu7Lnrv/12/embedded/result,js,html' allowfullscreen='allowfullscreen' frameborder='0'></iframe>
 
 The steps for creating other C3 widgets are very similar to the process described for the gauge widget. In the remainder of the tutorial, we will therefore focus on complete code segments for the R and JavaScript parts, in which various parts are explained via code comments inside the code blocks. 
 

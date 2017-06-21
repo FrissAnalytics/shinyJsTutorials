@@ -29,14 +29,12 @@ In the previous tutorials, we focused on using JavaScript to create htmlwidgets 
 In this tutorial, we will show you how to use the same functions to create a dynamic interactive help system for Shiny apps, based on the JavaScript library [introJS](http://introjs.com/).
 
 
-IntroJS lets you create a step-by-step guide for a website. It will draw a nice box around elements of your choice, combined with an annotation layer and a navigation system. Click the green button in the example below to see an introJS 'hello-world' example in action. 
-
-<iframe src = "http://introjs.com/example/hello-world/index.html" width = "100%" height = "600px" frameborder="0" scrolling ="no"></iframe>
-  
-
 ## Intro.js basics and jsFiddle
 
-Using introJS in a piece of HTML code is very simple. Let's first set up a jsFiddle example that uses a [bootstrap](http://getbootstrap.com/) grid of 3 rows, with 3 columns each. In addition, let's add a button that you can click to activate introJS. 
+IntroJS lets you create a step-by-step guide for a website. It will draw a nice box around elements of your choice, combined with an annotation layer and a navigation system. 
+
+
+Using introJS in a piece of HTML code is very simple. Let's first set up a jsFiddle example that uses a [bootstrap](http://getbootstrap.com/) grid of 3 rows, with 3 columns each. In addition, let's add a button that you can click to activate introJS. Click the green start button in the example below to see introJS in action. 
 
 
 <iframe width='100%' height='500px' src='https://jsfiddle.net/ok1vzopq/6/embedded/result,html,js,css' allowfullscreen='allowfullscreen' frameborder='0'></iframe>
