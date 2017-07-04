@@ -1,0 +1,39 @@
+---
+title: "Shiny JavaScript Tutorials"
+author: 
+- "Herman Sontrop"
+- "Erwin Schuijtvlot"
+date: "`r Sys.Date()`"
+output: 
+  html_document:
+    css: bootstrap-switch.min.css
+    highlight: kate
+    mathjax: null
+    theme: flatly
+    toc: yes
+    toc_depth: 4
+vignette: >
+  %\VignetteIndexEntry{Introduction}
+  %\VignetteEncoding{UTF-8}
+  %\VignetteEngine{knitr::rmarkdown}
+---
+
+## Introduction
+
+In this tutorial we'll extend our custom input bindings skills to create a button group input control that we'll use to create our filter panel.
+
+
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+
+Different size buttons:
+
+<div class="btn-group btn-group-xs" role="group">
+  <button type="button" class="btn btn-default">option 1</button>
+  <button type="button" class="btn btn-default">option 2</button>
+  <button type="button" class="btn btn-default">option 3</button>
+  <button type="button" class="btn btn-default">option 4</button>
+  <button type="button" class="btn btn-default">option 5</button>
+</div>
+
