@@ -20,17 +20,16 @@ vignette: >
 
 ## Introduction
 
-In this tutorial we'll learn how we can create our own custom [input bindings](https://shiny.rstudio.com/articles/building-inputs.html). In a shiny context, input bindings are mainly used to send information from the client to R. In contrast, the HTMLWidgets we created previously are examples of *output bindings*. Their main task is to send data from R to the browser and to output e.g. a chart or say a data table.  
+In this tutorial we'll learn how we can create our own custom [input bindings](https://shiny.rstudio.com/articles/building-inputs.html). In a Shiny context, input bindings are mainly used to send information from the client to R. In contrast, the HTMLWidgets we created previously are examples of *output bindings*. Their main task is to send data from R to the browser and to output e.g. a chart or say a data table.  
 
-The simplest form of an input binding is an [action button](https://shiny.rstudio.com/reference/shiny/latest/actionButton.html). The main purpose of an action button is to send a trigger from the client to R when we press the button. Out of the box shiny offers a number of other useful input bindings e.g. a [date picker](https://shiny.rstudio.com/reference/shiny/latest/dateInput.html) or a [selectize box](https://shiny.rstudio.com/reference/shiny/latest/selectInput.html). Please check out the UI Inputs section [here](https://shiny.rstudio.com/reference/shiny/latest/) for a more comprehensive overview of the available input bindings. 
+The simplest form of an input binding is an [action button](https://shiny.rstudio.com/reference/shiny/latest/actionButton.html). The main purpose of an action button is to send a trigger from the client to R when we press the button. 
 
-Sometimes, however, you may want to use your own set of buttons with custom behavior. For instance, [bootstrap](http://getbootstrap.com/) alone already offers a vast amount of [buttons](https://www.w3schools.com/bootstrap/bootstrap_buttons.asp), [button groups](http://getbootstrap.com/components/#btn-groups), [dropdown buttons](http://getbootstrap.com/components/#btn-dropdowns) etc. that you may want to use. This is typically the scenario in which you want to create an input binding such that you can easily use this functionality from R. So how does it work? 
+Out of the box, Shiny offers a number of other useful input bindings e.g. a [date picker](https://shiny.rstudio.com/reference/shiny/latest/dateInput.html) or a [selectize box](https://shiny.rstudio.com/reference/shiny/latest/selectInput.html). Please check out the UI Inputs section [here](https://shiny.rstudio.com/reference/shiny/latest/) for a more comprehensive overview of the available input bindings. Sometimes, however, you may want to use your own set of buttons with custom behavior. For instance, [bootstrap](http://getbootstrap.com/) alone already offers a vast amount of [buttons](https://www.w3schools.com/bootstrap/bootstrap_buttons.asp), [button groups](http://getbootstrap.com/components/#btn-groups), [dropdown buttons](http://getbootstrap.com/components/#btn-dropdowns) etc. that you may want to use. This is typically the scenario in which you want to create an input binding such that you can easily use this functionality from R.
 
 
 ## Creating your own toggle switch input binding
 
-As a first example, let' create a toggle switch, based on [bootstrap switch](http://bootstrapswitch.com/). With bootstrap switch you can easily turn checkboxes and radio buttons into iPhone style toggle switches. An overview of the various switches can be found [here](http://bootstrapswitch.com/examples.html).
-
+As a first example, let's create a toggle switch, based on [bootstrap switch](http://bootstrapswitch.com/). With bootstrap switch you can easily turn checkboxes and radio buttons into iPhone style toggle switches. An overview of the various switches can be found [here](http://bootstrapswitch.com/examples.html).
 
 Here's an example of the switch we will be creating. Press the button and see what happens!
 
@@ -45,16 +44,16 @@ Here's an example of the switch we will be creating. Press the button and see wh
 </p>
 
 <p>
-  <div style = "text-align:center">an example of a custom input binding in the form of a toggle switch</div>  
+  <div style = "text-align:center">An example of a custom input binding in the form of a toggle switch</div>  
 </p>
 
-Let's start with an example without shiny and slowly work towards creating the input binding. 
+Let's start with an example without Shiny and slowly work towards creating the input binding. 
 
 From the [documentation](https://github.com/Bttstrp/bootstrap-switch) of bootstrap switch it becomes clear that we need to: 
   
-  1) include a single CSS and JavaScript file 
-  2) create a standard input control and 
-  3) in JavaScript call the `bootstrapSwitch` method on the input control. 
+1. include a single CSS and JavaScript file,
+2. create a standard input control, and 
+3. call the `bootstrapSwitch` method on the input control in JavaScript.
 
 More concretely, for this first step we need to include:
 
@@ -68,7 +67,7 @@ Note that Bootstrap switch also requires jquery and bootstrap, however, these ar
 Next, we need to create an [input](https://www.w3schools.com/html/html_form_input_types.asp) tag of type `checkbox` and give it an `id` so we can easily grab the element later:
 
 ```html
-<input id = "id1" type="checkbox">
+<input id="id1" type="checkbox">
 ```
 
 Finally, in JavaScript we select the input control via jQuery, based on the given id, and call the `bootstrapSwitch` method on the selection. The latter method is defined in `bootstrap-switch.js`. 
@@ -84,20 +83,20 @@ Similar to creating an HTMLWidget, in order to create an input binding, we have 
 
 ### Boilerplate code
 
-There are a few things that are good to figure out before implementing a component. Before you start, make sure: 
+There are a few things that are good to figure out before implementing a component. Before you start, make sure you understand: 
 
-  1) you understand the required HTML of your component and that you know which options you can set 
-  2) how to create HTML attributes for these options and extract their values from JavaScript
-  3) how you can initialize your component in HTML or JavaScript based on these values
-  4) how to listen for changes to the state of your component
-  5) how to extract a useful value out of your component to send to shiny
+1. the required HTML of your component and that you know which options you can set,
+2. how to create HTML attributes for these options and extract their values from JavaScript,
+3. how you can initialize your component in HTML or JavaScript based on these values,
+4. how to listen for changes to the state of your component, and
+5. how to extract a useful value out of your component to send to Shiny.
 
-Next we'll look into the actual R and JavaScript code required. At first glance the required code below may appear a bit involved for only a single component. However, most of it is just boilerplate code that is the same for all input bindings you'll create. Filling in the details usually does not require that much code. Especially if you master the 5 steps from above, creating a custom input binding is not that difficult.
+Next we'll look into the actual R and JavaScript code required. At a first glance the required code below may appear a bit involved for only a single component. However, most of it is just boilerplate code that is the same for all input bindings you'll create. Filling in the details usually does not require too much original code. Especially if you master the five steps from above, creating a custom input binding is not that difficult.
 
 
 #### R boilerplate
 
-The core R boilerplate code we need to implement is:
+The core boilerplate R code we need to implement is:
 
 ```r
 component <- function(inputId, ...) {
@@ -113,13 +112,13 @@ component <- function(inputId, ...) {
 }
 ```
 
-Basically, we create a function, pass in some options, tell shiny what and where the required CSS and JavaScript files are, create a taglist with some tags, and set some attributes in these tags.
+Basically, we create a function, pass in some options, tell Shiny what and where the required CSS and JavaScript files are, create a taglist with some tags, and set some attributes in these tags.
 
-In R we then can use this function to use our binding. For instance, we may have `component("comp1", label = "comp 1", value = 10)`. Subsequently, we get the input back via `input$comp1`, which value initially will be 10. 
+We can then can use this function to use our binding. For instance, we may have `component("comp1", label = "comp 1", value = 10)`. Subsequently, we get the input back via `input$comp1`, which value initially will be 10. 
 
 #### JavaScript boilerplate
 
-Next, the core JavaScript boilerplate code we need to implement is:
+Next, the core boilerplate JavaScript code we need to implement is:
 
 ```javascript
 // step i
@@ -150,21 +149,20 @@ $.extend(binding, {
 Shiny.inputBindings.register(binding);
 ```
 
-Don't worry if this code doesn't make sense to you yet, we'll get to that soon! Essentially, first we create a new binding object, then add a few simple methods to it and finally, we register the component so shiny knows it exists.
+Don't worry if you're not familiar with this code yet, we'll explain it shortly! Essentially, we first create a new binding object, then add a few simple methods to it, and finally, we register the component so that Shiny knows it exists.
 
-These methods allow shiny to find instances of our component, to initialize them, to get information (values) out of them, to listen and react to changes to the state of our components and to send information to shiny, which in R we can capture with `input$...`. 
- 
- 
+These methods allow Shiny to find instances of our component, to initialize them, to get information (values) out of them, to listen and react to changes to the state of our components, and to send information to Shiny, which in R we can capture with `input$...`. 
+
 We'll discuss each of these methods and their implementation for our switch component in detail below. Let's start with the R code!
 
 
 ### Implementing the R part
 
-In order to use our switch component in other projects we create a `BootstrapSwitch` package. For convenience, you can download the example package [here]() (to do: insert link). 
+In order to use our switch component in other projects we create a `BootstrapSwitch` package. For convenience, you can download the example package [here](TO DO: INSERT LINK). 
 
-In our example, we want to create a toggle switch from R that we can use in shiny. We'll allow the user to set an `inputId` and some options. 
+In our example, we want to create a toggle switch from R that we can use in Shiny. We'll allow the user to set an `inputId` and some options. 
 
-More specifically, we want to be able to set the `inputId`, `label`, initial `state`, `width`, `size` and to specify the on / off color scheme i.e. `onColor` and `offColor`, using standard bootstrap colors i.e. `default`, `primary`, `success`, `info`, `warning` and `danger`.
+More specifically, we want to be able to set the `inputId`, `label`, initial `state`, `width`, `size` and to specify the on / off color scheme i.e. `onColor` and `offColor`, using standard bootstrap colors i.e. `default`, `primary`, `success`, `info`, `warning`, and `danger`.
 
 The complete R code for our example looks like this:
 
@@ -193,16 +191,15 @@ bootstrapSwitch <- function(inputId, label, state = TRUE, width = "auto", size =
                "data-label-text" = label)
   )
 }
-
 ```
 
-As we want to create an R package, shiny needs to know where our CSS and JavaScript files live. The [addResourcePath](https://shiny.rstudio.com/reference/shiny/latest/addResourcePath.html) and the code block inside [singleton](singleton)  make sure that happens. Of note, all these files need to be placed inside the `www` directory of our package. 
+As we want to create an R package, Shiny needs to know where our CSS and JavaScript files live. The [addResourcePath](https://shiny.rstudio.com/reference/shiny/latest/addResourcePath.html) and the code block inside [singleton](http://shiny.rstudio.com/reference/shiny/latest/singleton.html) make sure that happens. Of note, all these files need to be placed inside the `www` directory of our package. 
 
-`system.file` tells shiny where the directory of our package is after we have installed it, while `BootstrapSwitchBinding.js` contains the JavaScript part for our binding. 
+`system.file` tells Shiny where the directory of our package is after we have installed it, while `BootstrapSwitchBinding.js` contains the JavaScript part for our binding. 
 
-Next, we create an `input tag` and set its `type`, `id` and `class`. The `class` attribute is used in JavaScript to find all  instances of our component in a shiny app (see below). Furthermore, we add a number of `data-` attributes to initialize our toggle switch. See [here](http://bootstrapswitch.com/documentation-2.html) for an overview of the available options. 
+Next, we create an `input tag` and set its `type`, `id` and `class`. The `class` attribute is used in JavaScript to find all  instances of our component in a Shiny app (see below). Furthermore, we add a number of `data-` attributes to initialize our toggle switch. See [here](http://bootstrapswitch.com/documentation-2.html) for an overview of the available options. 
 
-Finally, note that the return type of our function is a `tagList`, that contains both the CSS and JavaScript files, as well as the required input tag. Shiny subsequently makes sure the files we need are included in the head of the HTML document of our app and generates the input tag. After this is done, we'll call some JavaScript on the tag, which we'll discuss next!
+Finally, note that the return type of our function is a `tagList`, that contains both the CSS and JavaScript files, as well as the required input tag. Shiny subsequently makes sure the files we need are included in the head of the HTML document of our app and generates the input tag. After this is done, we'll call some JavaScript on the tag, which we'll discuss next.
 
 
 ### Implementing the JavaScript part
@@ -211,7 +208,7 @@ Next, let's take a closer look at the boilerplate code for the required JavaScri
 
 
 ```javascript
-// this object that tells shiny how to identify instances of our component and how to interact with them 
+// this object that tells Shiny how to identify instances of our component and how to interact with them 
 var binding = new Shiny.InputBinding();
 
 // add some methods to our binding object 
@@ -221,7 +218,7 @@ $.extend(binding, {
   
 });
 
-// register the binding so shiny knows it exists
+// register the binding so Shiny knows it exists
 Shiny.inputBindings.register(binding);
 ```
 
@@ -230,7 +227,7 @@ First we indicate that we want to create a new custom input binding and store it
 
 #### Core methods
 
-Various methods can be added to the input binding object. The following follow are most important:
+Various methods can be added to the input binding object. The following are the most important:
 
 ```javascript
 $.extend(binding, {
@@ -258,31 +255,28 @@ $.extend(binding, {
 });
 ```
 
-The implementation details of these methods differ per binding. Before discussing these, we first explain their purpose.
+The implementation details of these methods differ for each binding. Before discussing these, we first explain their purpose.
 
 ##### find
 
-The `find` method finds any descendant elements that are an instance of your component and return them as an array-like object. Internally, the method often uses jQuery [find](https://api.jquery.com/find/) method to locate these instances (see below). Note the argument `scope` is passed automatically by shiny and here refers to the actual [document](https://www.w3schools.com/jsref/dom_obj_document.asp) object, the root node of our app. 
+The `find` method finds any descendant elements that are an instance of your component and return them as an array-like object. Internally, the method often uses jQuery [find](https://api.jquery.com/find/) method to locate these instances (see below). Note the argument `scope` is passed automatically by Shiny and here refers to the actual [document](https://www.w3schools.com/jsref/dom_obj_document.asp) object, the root node of our app. 
 
 
 ##### initialize
 
-Next, the `initialize` method can be used to initialize a component, after we have rendered the required tags. `el` here is the element that was returned from `find` i.e. the actual component. Furthermore, we can use jQuery's [data](https://api.jquery.com/data/) method to extract data attributes from our element (see below). 
+The `initialize` method can be used to initialize a component, after we have rendered the required tags. `el` here is the element that was returned from `find` i.e. the actual component. Furthermore, we can use jQuery's [data](https://api.jquery.com/data/) method to extract data attributes from our element (see below). 
 
-
-For instance, in the R code, we added attributes for `data-state` and `data-on-color` to our `input` element. In JavaScript, we can easily extract such attribute values from `el` e.g. using `$(el).data("state")` and `$(el).data("onColor")`. Note we need to omit the `data-` part and use camel casing. See [here](https://www.w3schools.com/jquery/misc_data.asp) for additional information on jQuery's data method.  
+For instance, in the R code, we added attributes for `data-state` and `data-on-color` to our `input` element. In JavaScript, we can easily extract such attribute values from `el` e.g. using `$(el).data("state")` and `$(el).data("onColor")`. Note that we need to omit the `data-` part and use camel casing. See [here](https://www.w3schools.com/jquery/misc_data.asp) for additional information on jQuery's data method.  
 
 ##### getValue
 
-The `getValue` method is used to extract the actual value out of our element `el`. The value we return here is the value that is made available in shiny via `input$...`. 
+The `getValue` method is used to extract the actual value out of our element `el`. The value we return here is the value that is made available in Shiny via `input$...`. 
 
 ##### subscribe
 
-Finally, the `subscribe` method listens for specific events on our component. This is easiest to implement using jQuery's [on](http://api.jquery.com/on/) method. When jQuery detects the event, the method uses `callback` (an internal shiny function), that subsequently calls `getValue`, and send the extracted value to shiny.  
-
+The `subscribe` method listens for specific events on our component. This is easiest to implement using jQuery's [on](http://api.jquery.com/on/) method. When jQuery detects the event, the method uses `callback` (an internal Shiny function), that subsequently calls `getValue`, and send the extracted value to shiny.  
 
 The complete JavaScript code for our switch example looks like this:
-
 
 ```javascript
 // create a binding object
@@ -331,50 +325,48 @@ $.extend(binding, {
     // trigger the getValue method and send the value to shiny
     $(document).on('switchChange.bootstrapSwitch', function(event){
 
-      // callback which will tell shiny to retrieve the value via getValue
+      // callback which will tell Shiny to retrieve the value via getValue
       callback();
     });
   }
 });
 
-// register the binding so shiny knows it exists
+// register the binding so Shiny knows it exists
 Shiny.inputBindings.register(binding);
 ```
 
-In the code above, `$(document).on('switchChange.bootstrapSwitch', ...)` is an example of jQuery's [event-delegation](https://learn.jquery.com/events/event-delegation/). This type of behavior allows you to be efficient with event handlers. 
+In the code above, `$(document).on('switchChange.bootstrapSwitch', ...)` is an example of jQuery's [event-delegation](https://learn.jquery.com/events/event-delegation/). This type of behavior allows you to be efficient with event handlers.
 
-For instance, suppose you generated a thousand buttons and you want to known the id of a button when you click on it. You could add a thousand click handlers, one for each button, but this is very inefficient! Using [event-delegation](https://learn.jquery.com/events/event-delegation/) you can use a *single* event handler instead, while still being able to tell which button was clicked!
+For instance, suppose you generated a thousand buttons and you want to know the id of a button when you click on it. You could add a thousand click handlers, one for each button, but this is very inefficient. Using [event-delegation](https://learn.jquery.com/events/event-delegation/) you can use a *single* event handler instead, while still being able to tell which button was clicked.
 
 Here we ask jQuery to find all the elements of class bootstrapSwitch, and to use a single event handler for all `switchChange` events. The `event` object  is automatically passed by JavaScript and can be used to find more information on the exact event. For example, see [here](https://www.w3schools.com/jsref/event_target.asp).
 
-Of note, most changes of the JavaScript code between bindings will be for the `getValue` and `subscribe` methods. Fortunately, these methods often require only a few lines of code each. Note most lines in the code blocks above are code comments and indents!
+Of note, most changes of the JavaScript code between bindings will be for the `getValue` and `subscribe` methods. Fortunately, these methods often require only a few lines of code each. Note most lines in the code blocks above are code comments and indents.
 
-#### Use console.log to learn more about your code
+#### Using console.log to learn more about your code
 
 You can find out a lot about the code above by inserting [console.log](https://www.w3schools.com/js/js_output.asp) messages and checking your [browser console](https://developers.google.com/web/tools/chrome-devtools/console/) (just hit F12 in the browser). 
 
-For instance, to know more about the `event`, `scope` or `el` objects as used in the various methods, just console.log them! 
+For instance, to know more about the `event`, `scope`, or `el` objects as used in the various methods, you can review their console.log.
 
-This way you can also learn more about when and how often specific functions are called. For instance, the `initialization` method is called only once per component instance and so is the `subscribe` method. However, the `callback` inside the `subscribe` method is called many times, as is the `getValue` function!
+The console.log will also tell you when and how often specific functions are called. For instance, the `initialization` method is called only once per component instance and so is the `subscribe` method. However, the `callback` inside the `subscribe` method is called many times, as is the `getValue` function.
 
 
 ### Additional methods
 
-A more thorough description of the various methods above is provided [here](https://shiny.rstudio.com/articles/building-inputs.html), while additional custom input binding examples by RSTUDIO can be found [here](https://shiny.rstudio.com/gallery/custom-input-bindings.html) and [here](https://github.com/rstudio/shiny-examples/tree/master/036-custom-input-control). 
+A more thorough description of the various methods above is provided [here](https://shiny.rstudio.com/articles/building-inputs.html), while additional custom input binding examples by RStudio can be found [here](https://shiny.rstudio.com/gallery/custom-input-bindings.html), and [here](https://github.com/rstudio/shiny-examples/tree/master/036-custom-input-control). 
 
 In addition to the previously discussed methods, several other JavaScript methods can be added to your input binding object, notably; `getId`, `getState`, `getRatePolicy`, `receiveMessage` and `unsubscribe`. These are discussed in the various references provided and are not further discussed here.
 
 ### Second example: A button group
 
-To get some more exercise into creating your own custom input bindings, consider the source code for the binding for the button group used in the dashboard application, which can be found [here]().
+To get some more exercise into creating your own custom input bindings, consider the source code for the binding for the button group used in the dashboard application, which can be found [here](TO DO: INSERT LINK).
 
 
 ### HTMLWidgets that send events to R
 
 HTMLWidgets send data from R to the browser, while input bindings do the reverse i.e. they send data from the client to R. Even though this is a reasonable way to think about the difference between input and output bindings, it's not the whole story. 
 
-For instance, RSTUDIO's [leaflet](https://rstudio.github.io/leaflet/) widget is an example of an HTMLWidget i.e. an output binding, that also sends [events](https://rstudio.github.io/leaflet/shiny.html#inputsevents) from the client to R. It does so when we change e.g. the map zoom level, pan the map to a different location or say click on a marker. Similar to input bindings, in R we can access these events using `input$...`. 
+For instance, RStudio's [leaflet](https://rstudio.github.io/leaflet/) widget is an example of an HTMLWidget i.e. an output binding, that also sends [events](https://rstudio.github.io/leaflet/shiny.html#inputsevents) from the client to R. It does so when we change the map zoom level, pan the map to a different location, or click on a marker. Similar to input bindings, in R we can access these events using `input$...`. 
 
-
-Note that in JavaScript we can always send events back to shiny using the `Shiny.onInputChange` method (see [tutorial 3](https://shiny.rstudio.com/tutorial/js-lesson3/)). In the next tutorial we see how we can use this method to send information from a brushable timeline widget (based on the `C3LineBarChart` developed tutorial 3), in order to create a filter system for our interactive dashboard application. 
-
+Note that in JavaScript we can always send events back to Shiny using the `Shiny.onInputChange` method (see [tutorial 3](https://shiny.rstudio.com/tutorial/js-lesson3/)). In the next tutorial we see how we can use this method to send information from a brushable timeline widget (based on the `C3LineBarChart` developed tutorial 3), in order to create a filter system for our interactive dashboard application.
