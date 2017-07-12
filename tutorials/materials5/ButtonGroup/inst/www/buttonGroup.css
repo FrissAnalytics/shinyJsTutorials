@@ -1,0 +1,14 @@
+.friss_btn_group {
+  border: 1px solid #cccccc;
+  padding: 6px 12px;
+  border-radius: 4px;
+}
+
+.friss_btn_group .btn-xs {
+  background-color: LightGray;
+}
+
+.friss_btn_group .active {
+  color: white;
+  background-color: green;
+}

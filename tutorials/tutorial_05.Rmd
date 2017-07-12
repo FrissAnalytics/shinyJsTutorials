@@ -158,7 +158,7 @@ We'll discuss each of these methods and their implementation for our switch comp
 
 ### Implementing the R part
 
-In order to use our switch component in other projects we create a `BootstrapSwitch` package. For convenience, you can download the example package [here](TO DO: INSERT LINK). 
+In order to use our switch component in other projects we create a `BootstrapSwitch` package. For convenience, you can find the example package [here](https://github.com/FrissAnalytics/shinyJsTutorials/tree/master/tutorials/materials5/BootstrapSwitch). 
 
 In our example, we want to create a toggle switch from R that we can use in Shiny. We'll allow the user to set an `inputId` and some options. 
 
@@ -360,7 +360,7 @@ In addition to the previously discussed methods, several other JavaScript method
 
 ### Second example: A button group
 
-To get some more exercise into creating your own custom input bindings, consider the source code for the binding for the button group used in the dashboard application, which can be found [here](TO DO: INSERT LINK).
+To get some more exercise into creating your own custom input bindings, consider the source code for the binding for the button group used in the dashboard application, which can be found [here](https://github.com/FrissAnalytics/shinyJsTutorials/tree/master/tutorials/materials5/ButtonGroup).
 
 
 ### HTMLWidgets that send events to R
