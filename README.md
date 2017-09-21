@@ -6,11 +6,6 @@ In order to master the techniques of extending shiny through these frameworks we
 
 <a href="https://frissdemo.shinyapps.io/FrissDashboard/"><img src="https://raw.githubusercontent.com/FrissAnalytics/shinyJsTutorials/master/tutorials/dashboard.png"></a>
 
-The tutorials are a work in progress.
-
-At present, tutorials [1](http://shiny.rstudio.com/tutorial/js-lesson1/), [2](http://shiny.rstudio.com/tutorial/js-lesson2/), [3](http://shiny.rstudio.com/tutorial/js-lesson3/) and [4](http://shiny.rstudio.com/tutorial/js-lesson4/) are available at the RSTUDIO website. Drafts of the final two tutorials will be finalized before the end of the useR! 2017 conference. 
-
-
 **[tutorial 1](http://shiny.rstudio.com/tutorial/js-lesson1/)**: In this tutorial we'll build our first htmlwidget, based on [c3.js](http://c3js.org/), a popular chart library build on [d3.js](https://d3js.org/). In addition, we'll take a deeper look in the tasks related to HTML, CSS and JavaScript a widget has to perform such that we can render JavaScript based interactive charts from R. Here we only create a single gauge chart, with limited functionality.
 
 **[tutorial 2](http://shiny.rstudio.com/tutorial/js-lesson2/)**: In this tutorial we expand the functionality of the gauge widget and elaborate on related JavaScript concepts such as closures, events, objects and methods. In addition, we’ll create widgets for a c3 pie chart, line bar chart and stacked area chart;
